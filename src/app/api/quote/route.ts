@@ -31,9 +31,37 @@ export async function POST(req: Request) {
   }
   if (q.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(q.email)) q.email = "";
 
-  const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, QUOTE_TO_EMAIL } = process.env;
-  if (!SMTP_HOST || !SMTP_USER || !SMTP_PASS || !QUOTE_TO_EMAIL) {
-    console.error("[quote] SMTP env vars missing; submission NOT sent:", q);
+  const { RESEND_API_KEY, RESEND_FROM, QUOTE_TO_EMAIL } = process.env;
+  const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS } = process.env;
+  const to = (QUOTE_TO_EMAIL ?? "").split(",").map((e) => e.trim()).filter(Boolean);
+  const mail = { subject: quoteSubject(q), text: quoteText(q), html: quoteHtml(q) };
+
+  // Preferred: Resend (one API key). Fallback: any SMTP login.
+  if (RESEND_API_KEY && to.length) {
+    try {
+      const res = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${RESEND_API_KEY}`, "Content-Type": "application/json" },
+        body: JSON.stringify({
+          from: RESEND_FROM || "RidgeLine Website <onboarding@resend.dev>",
+          to,
+          reply_to: q.email || undefined,
+          ...mail,
+        }),
+      });
+      if (!res.ok) {
+        console.error("[quote] Resend failed:", res.status, await res.text());
+        return NextResponse.json({ error: "Send failed" }, { status: 502 });
+      }
+      return NextResponse.json({ ok: true });
+    } catch (err) {
+      console.error("[quote] Resend error:", err);
+      return NextResponse.json({ error: "Send failed" }, { status: 502 });
+    }
+  }
+
+  if (!SMTP_HOST || !SMTP_USER || !SMTP_PASS || !to.length) {
+    console.error("[quote] No RESEND_API_KEY or SMTP vars; submission NOT sent:", q);
     return NextResponse.json({ error: "Email not configured" }, { status: 500 });
   }
 
@@ -48,11 +76,9 @@ export async function POST(req: Request) {
   try {
     await transporter.sendMail({
       from: `"RidgeLine Website" <${SMTP_USER}>`,
-      to: QUOTE_TO_EMAIL,
+      to,
       replyTo: q.email || undefined,
-      subject: quoteSubject(q),
-      text: quoteText(q),
-      html: quoteHtml(q),
+      ...mail,
     });
     return NextResponse.json({ ok: true });
   } catch (err) {

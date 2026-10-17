@@ -32,9 +32,9 @@ npm run dev          # http://localhost:3000
    - Start command: `npm start`
 4. Add these environment variables:
    - `NEXT_PUBLIC_SITE_URL=https://www.ridgelineroofingmn.com`
-   - Quote form emails the owner through SMTP (`/api/quote`). Create a mailbox in hPanel → Emails, then set:
-     - `SMTP_HOST=smtp.hostinger.com`, `SMTP_PORT=465`
-     - `SMTP_USER=<mailbox, e.g. website@ridgelineroofingmn.com>`, `SMTP_PASS=<mailbox password>`
+   - Quote form emails the owner through SMTP (`/api/quote`). Create a Gmail app password, then set:
+     - `SMTP_HOST=smtp.gmail.com`, `SMTP_PORT=465`
+     - `SMTP_USER=<Gmail address that sends>`, `SMTP_PASS=<16-char Gmail app password>`
      - `QUOTE_TO_EMAIL=cchrist10@gmail.com,bryan@webvisionrank.com` (comma-separated)
      - Without these the form shows a "please call us" message.
 5. Point the domain at the app. Each push to `main` redeploys.
