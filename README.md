@@ -32,12 +32,18 @@ npm run dev          # http://localhost:3000
    - Start command: `npm start`
 4. Add these environment variables:
    - `NEXT_PUBLIC_SITE_URL=https://www.ridgelineroofingmn.com`
-   - `NEXT_PUBLIC_FORM_ENDPOINT=<Formspree / Web3Forms endpoint>` — this is what makes quote requests reach the owner. Without it, the live form shows a "please call us" message.
+   - Quote form emails the owner through SMTP (`/api/quote`). Create a mailbox in hPanel → Emails, then set:
+     - `SMTP_HOST=smtp.hostinger.com`, `SMTP_PORT=465`
+     - `SMTP_USER=<mailbox, e.g. website@ridgelineroofingmn.com>`, `SMTP_PASS=<mailbox password>`
+     - `QUOTE_TO_EMAIL=cchrist10@gmail.com,bryan@webvisionrank.com` (comma-separated)
+     - Without these the form shows a "please call us" message.
 5. Point the domain at the app. Each push to `main` redeploys.
 
 The legacy 301 redirects in `next.config.ts` apply in this mode.
 
 ### Option B: Shared hosting (static)
+
+The `/api/quote` route needs a Node server, so static export can't build with it. For static, delete `src/app/api` and set `NEXT_PUBLIC_FORM_ENDPOINT` to a Formspree/Web3Forms URL instead.
 
 1. Run `npm run build:static`.
 2. Upload the **contents** of `/out` to `public_html`.
@@ -81,7 +87,7 @@ The legacy 301 redirects in `next.config.ts` apply in this mode.
   - `/duluth-resident-s-guide-to-roofing-replacement`
   - `/finding-quality-metal-roofing-in-st-paul-what-to-know`
   - `/how-to-choose-a-roofer-in-austin`
-- [ ] Set `NEXT_PUBLIC_FORM_ENDPOINT` and send a test submission.
+- [ ] Set the SMTP vars and send a test submission.
 - [ ] Submit `https://www.ridgelineroofingmn.com/sitemap.xml` in Google Search Console.
 - [ ] Point the Google Business Profile website link at the new homepage.
 - [ ] Optional: embed live Google reviews in `src/components/home/Reviews.tsx`.

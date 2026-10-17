@@ -14,14 +14,15 @@ const SERVICES = [
 ];
 const TIMING = ["As soon as possible", "Within a month", "In 1 to 3 months", "Just planning"];
 
-// Set NEXT_PUBLIC_FORM_ENDPOINT (e.g. a Formspree or Web3Forms URL) to receive submissions.
-const ENDPOINT = process.env.NEXT_PUBLIC_FORM_ENDPOINT;
+// Posts to /api/quote (emails the owner via SMTP). Set NEXT_PUBLIC_FORM_ENDPOINT
+// (e.g. a Formspree URL) to override, which is required for the static export.
+const ENDPOINT = process.env.NEXT_PUBLIC_FORM_ENDPOINT || "/api/quote";
 
 export default function QuoteForm() {
   const [step, setStep] = useState(0);
   const [dir, setDir] = useState(1);
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
-  const [data, setData] = useState({ service: "", timing: "", name: "", phone: "", email: "", city: "", notes: "" });
+  const [data, setData] = useState({ service: "", timing: "", name: "", phone: "", email: "", city: "", notes: "", website: "" });
   const set = (k: keyof typeof data, v: string) => setData((d) => ({ ...d, [k]: v }));
   const go = (n: number) => {
     setDir(n > step ? 1 : -1);
@@ -32,16 +33,12 @@ export default function QuoteForm() {
     e.preventDefault();
     setStatus("sending");
     try {
-      if (ENDPOINT) {
-        const res = await fetch(ENDPOINT, {
-          method: "POST",
-          headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify({ ...data, _subject: `New roofing quote request: ${data.name}` }),
-        });
-        if (!res.ok) throw new Error();
-      } else if (process.env.NODE_ENV === "production") {
-        throw new Error("Form endpoint not configured");
-      }
+      const res = await fetch(ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ ...data, _subject: `New roofing quote request: ${data.name}` }),
+      });
+      if (!res.ok) throw new Error();
       setStatus("done");
     } catch {
       setStatus("error");
@@ -145,6 +142,16 @@ export default function QuoteForm() {
                       <input id="q-city" required autoComplete="address-level2" value={data.city} onChange={(e) => set("city", e.target.value)} />
                     </div>
                   </div>
+                  <input
+                    type="text"
+                    name="website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    style={{ position: "absolute", left: "-9999px", opacity: 0 }}
+                    value={data.website}
+                    onChange={(e) => set("website", e.target.value)}
+                  />
                   <div className="field">
                     <label htmlFor="q-notes">Anything we should know? (optional)</label>
                     <textarea id="q-notes" rows={3} value={data.notes} onChange={(e) => set("notes", e.target.value)} />
