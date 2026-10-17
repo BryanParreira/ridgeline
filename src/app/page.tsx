@@ -1,95 +1,66 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Hero from "@/components/home/Hero";
+import Intro from "@/components/home/Intro";
+import Services from "@/components/home/Services";
+import RecentWork from "@/components/home/RecentWork";
+import Materials from "@/components/home/Materials";
+import Process from "@/components/home/Process";
+import StormBand from "@/components/home/StormBand";
+import Reviews from "@/components/home/Reviews";
+import AreaPreview from "@/components/home/AreaPreview";
+import QuoteForm from "@/components/QuoteForm";
+import ContactLines from "@/components/ContactLines";
+import FAQ from "@/components/FAQ";
+import { Reveal } from "@/components/Reveal";
+import { projects } from "@/lib/projects";
+import { cities } from "@/lib/cities";
+import { faqs } from "@/lib/content";
+import { faqSchema } from "@/lib/site";
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <main>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema(faqs)) }} />
+      <Hero projectCount={projects.length} />
+      <Intro projectCount={projects.length} cityCount={cities.length} />
+      <Services />
+      <RecentWork items={projects.slice(0, 6)} total={projects.length} />
+      <Process />
+      <Materials />
+      <StormBand />
+      <AreaPreview />
+      <Reviews />
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+      <section className="section alt" id="quote">
+        <div className="container quote">
+          <Reveal>
+            <span className="eyebrow">Get a quote</span>
+            <h2 className="h-lg" style={{ marginTop: 14 }}>
+              Tell us about your roof.
+            </h2>
+            <p className="lede" style={{ marginTop: 14 }}>
+              Three quick steps. We&apos;ll follow up to schedule your inspection and give you a clear, written quote.
+            </p>
+            <ContactLines />
+          </Reveal>
+          <Reveal delay={0.1}>
+            <QuoteForm />
+          </Reveal>
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+
+      <section className="section" id="faq">
+        <div className="container faq-wrap">
+          <Reveal>
+            <span className="eyebrow">FAQ</span>
+            <h2 className="h-lg" style={{ marginTop: 14 }}>
+              Common questions.
+            </h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <FAQ items={faqs} />
+          </Reveal>
+        </div>
+      </section>
+    </main>
   );
 }
