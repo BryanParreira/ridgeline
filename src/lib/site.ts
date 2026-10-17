@@ -15,7 +15,7 @@ export const businessSchema = {
   url: SITE_URL,
   telephone: "+1-507-440-8756",
   image: `${SITE_URL}/og.jpg`,
-  logo: `${SITE_URL}/logo.svg`,
+  logo: `${SITE_URL}/brand/ridgeline-logo.png`,
   priceRange: "$$",
   address: {
     "@type": "PostalAddress",

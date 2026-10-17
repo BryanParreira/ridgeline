@@ -149,7 +149,7 @@ export default function Materials() {
                   <div>
                     <small>Typical lifespan</small>
                     <strong>
-                      {m.lifespan[0]}–{m.lifespan[1]} yrs
+                      {m.lifespan[0]} to {m.lifespan[1]} yrs
                     </strong>
                   </div>
                   <div>

@@ -13,7 +13,7 @@ export default function Footer() {
         <div className="footer-grid">
           <div>
             <Link href="/" aria-label="RidgeLine Roofing home">
-              <Logo />
+              <Logo variant="light" />
             </Link>
             <p style={{ marginTop: 20, maxWidth: "34ch" }}>
               Locally owned residential, commercial and storm-damage roofing for southern Minnesota and north Iowa.

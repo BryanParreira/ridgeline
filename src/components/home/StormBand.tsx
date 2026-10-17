@@ -20,7 +20,7 @@ export default function StormBand() {
               directly with your insurance company so you don&apos;t have to.
             </p>
             <ul className="band-points">
-              {["Emergency tarping", "Hail & wind inspections", "Insurance claim help", "Local — not storm chasers"].map((t) => (
+              {["Emergency tarping", "Hail & wind inspections", "Insurance claim help", "Local, not storm chasers"].map((t) => (
                 <li key={t}>
                   <Check size={16} /> {t}
                 </li>

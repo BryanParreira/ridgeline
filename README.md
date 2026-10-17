@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# RidgeLine Roofing — website
 
-## Getting Started
+Next.js 15 (App Router) + TypeScript + Motion + Lenis. Every page is prerendered to static HTML, so it's fast and fully crawlable.
 
-First, run the development server:
+## Develop
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev          # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Scripts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Script | What it does |
+| --- | --- |
+| `npm run dev` | Local dev server |
+| `npm run build` | Production build (pulls the latest ProjectMapIt projects first) |
+| `npm start` | Serve the production build |
+| `npm run build:static` | Static export to `/out` for plain shared hosting |
+| `npm run sync:projects` | Refresh `src/data/projects.json` from ProjectMapIt |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Deploy to Hostinger from GitHub
 
-## Learn More
+### Option A: Node.js Web App (recommended)
 
-To learn more about Next.js, take a look at the following resources:
+1. Push this repo to GitHub.
+2. In hPanel, go to **Websites → Add website → Node.js Apps → Import Git repository**, then pick the repo.
+3. Use these settings:
+   - Framework: **Next.js**
+   - Node version: **20.x or newer**
+   - Build command: `npm run build`
+   - Start command: `npm start`
+4. Add these environment variables:
+   - `NEXT_PUBLIC_SITE_URL=https://www.ridgelineroofingmn.com`
+   - `NEXT_PUBLIC_FORM_ENDPOINT=<Formspree / Web3Forms endpoint>` — this is what makes quote requests reach the owner. Without it, the live form shows a "please call us" message.
+5. Point the domain at the app. Each push to `main` redeploys.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The legacy 301 redirects in `next.config.ts` apply in this mode.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Option B: Shared hosting (static)
 
-## Deploy on Vercel
+1. Run `npm run build:static`.
+2. Upload the **contents** of `/out` to `public_html`.
+3. `public/.htaccess` is exported with the site. It forces HTTPS + www and handles the legacy redirects.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Content
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Business info, home copy, FAQs:** `src/lib/content.ts`
+- **Service pages:** `src/lib/services.ts`. Their slugs match the old Duda URLs.
+- **City pages:** `src/lib/cities.ts`. The 27 pages are at `/areas-we-serve/<slug>`.
+- **Photos:** the originals live in `/pictures`, which is git-ignored. Web-optimized copies are in `public/images` and mapped in `content.ts → images`.
+- **Project map:** `src/data/projects.json` is synced from ProjectMapIt on every build. For privacy, house numbers are stripped and coordinates are rounded to about 100 m.
+
+## SEO notes
+
+- URLs match the current site, so existing rankings carry over. Changed URLs are 301-redirected.
+- Each page has a unique title, meta description, and canonical URL, plus Open Graph tags.
+- JSON-LD on each page:
+  - `RoofingContractor` on every page
+  - `Service`, `FAQPage`, and `BreadcrumbList` on service and city pages
+  - `ItemList` of projects on `/portfolio`
+- `sitemap.xml` and `robots.txt` are generated automatically.
+- The project map is rendered as indexable HTML. The old ProjectMapIt embed hid itself from crawlers, so these pages were invisible to Google before.
+
+### Before launch
+
+- [ ] Migrate the 16 blog posts from the old site, keeping the same slugs (they can go in the `[slug]` route):
+  - `/what-austin-mn-homeowners-should-know-before-a-roof-replacement`
+  - `/five-warning-signs-your-lakeville-roof-needs-inspection-after-severe-weather`
+  - `/storm-restoration-for-maple-grove-roofs-inspection-through-repair`
+  - `/roof-repair-vs-roof-replacement-in-bloomington-making-the-smart-investment-after-storm-damage`
+  - `/how-minneapolis-hail-storms-impact-your-roof-and-when-it-s-time-for-a-roof-replacement`
+  - `/comparing-tpo-roofing-installation-for-waseca-mn-businesses`
+  - `/scheduling-residential-roofing-inspections-in-faribault-mn`
+  - `/avoiding-common-mistakes-during-roof-replacement-in-owatonna-mn`
+  - `/planning-commercial-rubber-roofing-installation-in-albert-lea-mn`
+  - `/which-metal-roofing-system-fits-your-rochester-mn-property`
+  - `/when-to-call-a-roofer-in-waseca`
+  - `/what-to-expect-from-commercial-roofing-repairs-in-rochester`
+  - `/how-to-find-a-roofing-inspector-in-minneapolis`
+  - `/duluth-resident-s-guide-to-roofing-replacement`
+  - `/finding-quality-metal-roofing-in-st-paul-what-to-know`
+  - `/how-to-choose-a-roofer-in-austin`
+- [ ] Set `NEXT_PUBLIC_FORM_ENDPOINT` and send a test submission.
+- [ ] Submit `https://www.ridgelineroofingmn.com/sitemap.xml` in Google Search Console.
+- [ ] Point the Google Business Profile website link at the new homepage.
+- [ ] Optional: embed live Google reviews in `src/components/home/Reviews.tsx`.

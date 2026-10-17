@@ -19,13 +19,18 @@ const u = (id: string, w = 1600) =>
   `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=80`;
 
 export const images = {
-  hero: u("1600596542815-ffad4c1539a9", 2400),
+  // Owner-supplied RidgeLine job photos (optimized copies of /pictures).
+  hero: "/images/new-roof-cape-cod-austin-mn.jpg",
+  residential: "/images/crew-installing-shingle-roof.jpg",
+  commercial: "/images/commercial-tpo-roof-downtown.jpg",
+  commercialCrew: "/images/commercial-flat-roof-installation.jpg",
+  crane: "/images/commercial-roof-crane-lift.jpg",
+  shingleAerial: "/images/shingle-roof-aerial-fall.jpg",
+  hipAerial: "/images/hip-roof-aerial-inspection.jpg",
+  // Stock fallbacks where no job photo exists yet.
   roofer: u("1632759145351-1d592919f522"),
-  residential: u("1625602812206-5ec545ca1231"),
-  commercial: u("1541888946425-d81bb19240f5"),
-  storm: u("1605727216801-e27ce1d0cc28", 2400),
-  homeSunset: u("1558036117-15d82a90b9b1"),
-  suburb: u("1592595896551-12b371d546d5"),
+  storm: u("1605727216801-e27ce1d0cc28", 2000),
+  metal: u("1592595896551-12b371d546d5"),
 };
 
 export const nav = [
@@ -66,7 +71,7 @@ export const services = [
     key: "storm",
     title: "Storm Repairs",
     blurb:
-      "24/7 emergency response for hail and wind damage — and we work directly with your insurance company so you don't have to.",
+      "24/7 emergency response for hail and wind damage. We work directly with your insurance company so you don't have to.",
     points: ["24/7 emergency tarping", "Hail & wind damage", "Insurance claim help", "Fast turnaround"],
     image: images.roofer,
   },
@@ -147,7 +152,7 @@ export const steps = [
   {
     n: "01",
     title: "Inspect",
-    body: "We climb up, document everything with photos, and walk you through exactly what we found — no pressure, no jargon.",
+    body: "We climb up, document everything with photos, and walk you through exactly what we found. No pressure, no jargon.",
   },
   {
     n: "02",
@@ -162,7 +167,7 @@ export const steps = [
   {
     n: "04",
     title: "Install",
-    body: "Our crew protects your landscaping, tears off, installs, and magnet-sweeps every nail — usually in a single day.",
+    body: "Our crew protects your landscaping, tears off, installs, and magnet-sweeps every nail, usually in a single day.",
   },
   {
     n: "05",
@@ -191,7 +196,7 @@ export const hotspots = [
     x: 190,
     y: 165,
     title: "Shingles & Hail Hits",
-    body: "We look for bruising, granule loss, and lifted tabs — the evidence insurance adjusters need.",
+    body: "We look for bruising, granule loss, and lifted tabs: the evidence insurance adjusters need.",
   },
   {
     id: "ice",
@@ -225,7 +230,7 @@ export const reviews = [
   },
   {
     quote:
-      "Honest inspection — they told us we had a few more years left instead of selling us a roof. Guess who we called when it was time.",
+      "Honest inspection. They told us we had a few more years left instead of selling us a roof. Guess who we called when it was time.",
     name: "Homeowner",
     town: "Albert Lea, MN",
   },
@@ -240,7 +245,7 @@ export const reviews = [
 export const faqs = [
   {
     q: "How do I know if I need a repair or a full replacement?",
-    a: "It depends on age, the extent of damage, and how many layers you already have. We'll inspect, show you photos, and give you an honest recommendation — sometimes a repair is all you need.",
+    a: "It depends on age, the extent of damage, and how many layers you already have. We'll inspect, show you photos, and give you an honest recommendation. Sometimes a repair is all you need.",
   },
   {
     q: "Will you work with my insurance company?",
@@ -259,7 +264,7 @@ export const faqs = [
     a: "We're based in Austin and serve Albert Lea, Rochester, Owatonna, Waseca, and the surrounding southern Minnesota communities.",
   },
   {
-    q: "Shingle or metal — which is right for me?",
+    q: "Shingle or metal: which is right for me?",
     a: "Shingles offer great value and curb appeal; metal costs more up front but lasts decades longer and sheds snow beautifully. We'll walk you through both with real samples.",
   },
 ];

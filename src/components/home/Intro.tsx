@@ -10,7 +10,7 @@ export default function Intro({ projectCount, cityCount }: { projectCount: numbe
           <h2 className="h-lg">Local roofers. Honest advice. Work that lasts.</h2>
           <p className="lede">
             We&apos;re a locally owned crew based in downtown Austin with more than 20 years on southern Minnesota
-            rooftops. No storm chasers and no pressure — just clear inspections, fair pricing and roofs built for our
+            rooftops. No storm chasers and no pressure. Just clear inspections, fair pricing and roofs built for our
             winters.
           </p>
         </Reveal>

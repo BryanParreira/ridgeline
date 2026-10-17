@@ -34,7 +34,7 @@ export default function Hero({ projectCount }: { projectCount: number }) {
           </motion.h1>
           <motion.p className="lede" {...up(0.2)}>
             Locally owned residential, commercial and storm-damage roofing for Austin, Albert Lea, Rochester, Owatonna,
-            Waseca and north Iowa — with honest inspections and direct insurance claim help.
+            Waseca and north Iowa. Honest inspections and direct insurance claim help.
           </motion.p>
           <motion.div className="hero-actions" {...up(0.3)}>
             <Link href="/contact-us" className="btn btn-primary">
@@ -69,7 +69,7 @@ export default function Hero({ projectCount }: { projectCount: number }) {
         >
           <motion.img
             src={images.hero}
-            alt="Southern Minnesota home with a new roof by RidgeLine Roofing"
+            alt="White Cape Cod home with a new black shingle roof installed by RidgeLine Roofing in Austin, MN"
             fetchPriority="high"
             style={{ y: imgY }}
           />

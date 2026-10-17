@@ -48,7 +48,7 @@ export const regionInfo: Record<Region, { title: string; intro: (c: City) => str
     title: "Southern Minnesota",
     intro: (c) =>
       c.slug === "austin-mn"
-        ? "Austin is home. Our shop is right downtown at 209 Main St S, and most of the roofs on our project map are here in Mower County — from tidy ramblers in the southwest neighborhoods to two-story homes near the lakes."
+        ? "Austin is home. Our shop is right downtown at 209 Main St S, and most of the roofs on our project map are here in Mower County, from tidy ramblers in the southwest neighborhoods to two-story homes near the lakes."
         : `${c.name} is part of our core southern Minnesota service area, about ${c.drive} from our Austin shop. We serve homeowners and businesses throughout ${c.county} with the same crew, materials and attention to detail we bring to every job.`,
     weather: (c) =>
       `Southern Minnesota sits in one of the most active hail corridors in the Upper Midwest. Spring and summer storms regularly bring hail and straight-line winds through ${c.county}, while winters bring heavy snow loads and ice dams. Every roof we build in ${c.name} is designed for both.`,
@@ -63,7 +63,7 @@ export const regionInfo: Record<Region, { title: string; intro: (c: City) => str
   metro: {
     title: "Twin Cities Metro",
     intro: (c) =>
-      `RidgeLine Roofing serves ${c.name} and the south metro with residential and commercial roofing, storm restoration and insurance claim assistance. You get a locally owned Minnesota contractor — not an out-of-state storm chaser.`,
+      `RidgeLine Roofing serves ${c.name} and the south metro with residential and commercial roofing, storm restoration and insurance claim assistance. You get a locally owned Minnesota contractor, not an out-of-state storm chaser.`,
     weather: (c) =>
       `The Twin Cities metro has seen repeated severe hail events in recent years, and ${c.county} homeowners know how quickly a single storm can total a roof. We inspect, document and restore storm-damaged roofs in ${c.name} from start to finish.`,
   },

@@ -30,19 +30,19 @@ export const servicePages: ServicePage[] = [
     h1: "Residential roofing built for Minnesota winters",
     image: images.residential,
     intro:
-      "Your roof takes everything a Minnesota year can throw at it — heavy snow loads, ice dams, spring hail and summer straight-line winds. RidgeLine Roofing has spent more than 20 years installing and repairing residential roofs across Austin, Albert Lea, Rochester, Owatonna and Waseca, and we build every one to handle the next storm.",
+      "Your roof takes everything a Minnesota year can throw at it: heavy snow loads, ice dams, spring hail and summer straight-line winds. RidgeLine Roofing has spent more than 20 years installing and repairing residential roofs across Austin, Albert Lea, Rochester, Owatonna and Waseca, and we build every one to handle the next storm.",
     sections: [
       {
         h2: "Complete residential roofing services",
         body: [
-          "From a single leak to a full tear-off, we handle the whole job with our own crew. We install architectural asphalt shingles — including CertainTeed Landmark and Landmark PRO lines — and standing-seam metal systems, plus all of the underlayment, ice & water shield, flashing and ventilation that make a roof actually last.",
+          "From a single leak to a full tear-off, we handle the whole job with our own crew. We install architectural asphalt shingles, including CertainTeed Landmark and Landmark PRO lines, and standing-seam metal systems, plus all of the underlayment, ice & water shield, flashing and ventilation that make a roof actually last.",
           "Every project starts with an honest inspection and photos of what we find, so you can make a decision based on facts instead of a sales pitch.",
         ],
       },
       {
         h2: "Why southern Minnesota homeowners choose RidgeLine",
         body: [
-          "We're a local, Austin-based company — not a storm chaser who disappears after the season. We answer the phone, we stand behind our work, and we'll still be here when you need us next.",
+          "We're a local, Austin-based company, not a storm chaser who disappears after the season. We answer the phone, we stand behind our work, and we'll still be here when you need us next.",
           "Our crews protect your landscaping, keep a clean site, and magnet-sweep for nails before we leave. Most residential replacements are finished in a day or two.",
         ],
       },
@@ -76,14 +76,14 @@ export const servicePages: ServicePage[] = [
       "Full residential roof replacement with clean tear-off, premium shingles or metal, and a one-to-two day install. Serving southern MN. Call (507) 440-8756.",
     eyebrow: "Residential · Replacement",
     h1: "Roof replacement done right the first time",
-    image: images.suburb,
+    image: images.hero,
     intro:
-      "When repairs stop making sense, a full replacement protects your home for decades. We tear off down to the deck, fix what's underneath, and install a complete roofing system — not just new shingles on top.",
+      "When repairs stop making sense, a full replacement protects your home for decades. We tear off down to the deck, fix what's underneath, and install a complete roofing system, not just new shingles on top.",
     sections: [
       {
         h2: "Signs it's time to replace your roof",
         body: [
-          "Curling or missing shingles, granules piling up in your gutters, daylight in the attic, repeated leaks, or a roof that's simply past 20–25 years old are all signals worth a professional look.",
+          "Curling or missing shingles, granules piling up in your gutters, daylight in the attic, repeated leaks, or a roof that's simply past 20 to 25 years old are all signals worth a professional look.",
           "After a hail or wind event, damage isn't always visible from the ground. We'll climb up, document everything, and tell you honestly whether you need a repair or a replacement.",
         ],
       },
@@ -124,7 +124,7 @@ export const servicePages: ServicePage[] = [
       "Thorough residential roof inspections with photo documentation for storm damage, insurance claims, and home sales. Call RidgeLine Roofing at (507) 440-8756.",
     eyebrow: "Residential · Inspections",
     h1: "Honest roof inspections with photo proof",
-    image: images.roofer,
+    image: images.hipAerial,
     intro:
       "A roof inspection should give you answers, not a sales pitch. We get on your roof, photograph everything, and walk you through what's fine, what needs attention, and what can wait.",
     sections: [
@@ -170,7 +170,7 @@ export const servicePages: ServicePage[] = [
       "CertainTeed Landmark architectural shingle installation and replacement in Austin, Albert Lea, Rochester & Owatonna, MN. Call (507) 440-8756.",
     eyebrow: "Residential · Shingle",
     h1: "Architectural shingle roofs with real curb appeal",
-    image: images.homeSunset,
+    image: images.shingleAerial,
     intro:
       "Architectural asphalt shingles are the most popular roofing choice in Minnesota for good reason: dimensional good looks, dozens of colors, strong wind ratings, and outstanding value.",
     sections: [
@@ -199,11 +199,11 @@ export const servicePages: ServicePage[] = [
     faqs: [
       {
         q: "How long do architectural shingles last?",
-        a: "Properly installed and ventilated architectural shingles typically last 25–30 years in Minnesota.",
+        a: "Properly installed and ventilated architectural shingles typically last 25 to 30 years in Minnesota.",
       },
       {
         q: "Are impact-resistant shingles worth it?",
-        a: "In hail-prone areas they can reduce damage and may qualify for insurance discounts — ask your agent and we'll help you compare.",
+        a: "In hail-prone areas they can reduce damage and may qualify for insurance discounts. Ask your agent and we'll help you compare.",
       },
     ],
     related: ["metal-roofing", "residential-roofing-replacement", "residential-roofing"],
@@ -217,7 +217,7 @@ export const servicePages: ServicePage[] = [
       "Standing-seam and exposed-fastener metal roofs for homes, barns and outbuildings across southern Minnesota. Long-lasting and snow-shedding. Call (507) 440-8756.",
     eyebrow: "Residential · Metal",
     h1: "Metal roofs that shrug off Minnesota winters",
-    image: images.suburb,
+    image: images.metal,
     intro:
       "A metal roof is a once-in-a-lifetime investment. It sheds snow and ice quickly, stands up to wind and hail, and can last 40 to 70 years with minimal maintenance.",
     sections: [
@@ -230,11 +230,11 @@ export const servicePages: ServicePage[] = [
       {
         h2: "Is metal right for your home?",
         body: [
-          "Metal costs more up front than shingles, but its lifespan, energy efficiency and snow-shedding performance often make it the better long-term value — especially if you plan to stay in your home.",
+          "Metal costs more up front than shingles, but its lifespan, energy efficiency and snow-shedding performance often make it the better long-term value, especially if you plan to stay in your home.",
         ],
       },
     ],
-    checks: ["Standing-seam", "Exposed-fastener", "Snow guards", "Homes & barns", "40–70 yr lifespan", "Energy efficient"],
+    checks: ["Standing-seam", "Exposed-fastener", "Snow guards", "Homes & barns", "40 to 70 yr lifespan", "Energy efficient"],
     faqs: [
       {
         q: "Is a metal roof loud in the rain?",
@@ -242,7 +242,7 @@ export const servicePages: ServicePage[] = [
       },
       {
         q: "Will snow slide off a metal roof?",
-        a: "Yes — that's a major benefit. We can add snow guards over entries and walkways to control it.",
+        a: "Yes, that's a major benefit. We can add snow guards over entries and walkways to control it.",
       },
     ],
     related: ["shingle-roofing", "residential-roofing-replacement", "residential-roofing"],
@@ -258,7 +258,7 @@ export const servicePages: ServicePage[] = [
     h1: "Commercial roofing that keeps your business open",
     image: images.commercial,
     intro:
-      "A leaking roof costs a business more than repairs — it costs inventory, equipment and customers. We install and repair low-slope commercial roofing systems with minimal disruption to your operations.",
+      "A leaking roof costs a business more than repairs. It costs inventory, equipment and customers. We install and repair low-slope commercial roofing systems with minimal disruption to your operations.",
     sections: [
       {
         h2: "Commercial roofing systems",
@@ -277,7 +277,7 @@ export const servicePages: ServicePage[] = [
     checks: ["TPO membrane", "EPDM rubber", "Leak repairs", "Roof recovers", "Maintenance plans", "Minimal disruption"],
     faqs: [
       {
-        q: "TPO or EPDM — which is better?",
+        q: "TPO or EPDM: which is better?",
         a: "TPO is bright white and energy efficient with heat-welded seams; EPDM is extremely flexible in cold weather and repair-friendly. We'll recommend the best fit for your building.",
       },
       {
@@ -296,7 +296,7 @@ export const servicePages: ServicePage[] = [
       "Energy-efficient TPO roof installation for commercial and low-slope buildings in southern Minnesota. Heat-welded seams, reflective membrane. Call (507) 440-8756.",
     eyebrow: "Commercial · TPO",
     h1: "TPO roofing for efficient, watertight buildings",
-    image: images.commercial,
+    image: images.commercialCrew,
     intro:
       "TPO (thermoplastic polyolefin) is a bright-white single-ply membrane with heat-welded seams. It reflects sunlight, lowers cooling costs, and creates a continuous watertight surface on low-slope roofs.",
     sections: [
@@ -315,10 +315,10 @@ export const servicePages: ServicePage[] = [
     ],
     checks: ["Heat-welded seams", "Reflective membrane", "Tapered insulation", "Puncture resistant", "Lower cooling costs", "Low-slope experts"],
     faqs: [
-      { q: "How long does a TPO roof last?", a: "A properly installed TPO roof typically lasts 20–30 years." },
+      { q: "How long does a TPO roof last?", a: "A properly installed TPO roof typically lasts 20 to 30 years." },
       {
         q: "Can TPO go over my existing roof?",
-        a: "Sometimes. If the existing roof is dry and sound, a recover may be an option — we'll test and advise.",
+        a: "Sometimes. If the existing roof is dry and sound, a recover may be an option. We'll test and advise.",
       },
     ],
     related: ["commercial-rubber-roofing-installation", "commercial-roofing-repairs", "commercial-roofing"],
@@ -332,7 +332,7 @@ export const servicePages: ServicePage[] = [
       "EPDM rubber roof installation for commercial and low-slope buildings across southern Minnesota. Flexible, durable, cold-weather proven. Call (507) 440-8756.",
     eyebrow: "Commercial · EPDM",
     h1: "EPDM rubber roofing, proven in the cold",
-    image: images.commercial,
+    image: images.crane,
     intro:
       "EPDM is a synthetic rubber membrane that has protected low-slope roofs for decades. It stays flexible through brutal Minnesota winters and is simple to maintain and repair.",
     sections: [
@@ -349,10 +349,10 @@ export const servicePages: ServicePage[] = [
         ],
       },
     ],
-    checks: ["Cold-weather flexible", "Fewer seams", "Fully adhered", "Repair friendly", "25–30 yr lifespan", "Low maintenance"],
+    checks: ["Cold-weather flexible", "Fewer seams", "Fully adhered", "Repair friendly", "25 to 30 yr lifespan", "Low maintenance"],
     faqs: [
-      { q: "How long does EPDM last?", a: "EPDM roofs commonly last 25–30 years with basic maintenance." },
-      { q: "Can a rubber roof be repaired?", a: "Yes — EPDM is very repair-friendly. Most punctures and seam issues can be patched." },
+      { q: "How long does EPDM last?", a: "EPDM roofs commonly last 25 to 30 years with basic maintenance." },
+      { q: "Can a rubber roof be repaired?", a: "Yes. EPDM is very repair-friendly. Most punctures and seam issues can be patched." },
     ],
     related: ["commercial-tpo-roofing-installation", "commercial-roofing-repairs", "commercial-roofing"],
   },
@@ -372,7 +372,7 @@ export const servicePages: ServicePage[] = [
       {
         h2: "Common commercial roof problems",
         body: [
-          "Open seams, failed flashing at curbs and walls, ponding water, punctures from foot traffic or HVAC work, and storm damage are the most common causes of commercial leaks — all of which we repair.",
+          "Open seams, failed flashing at curbs and walls, ponding water, punctures from foot traffic or HVAC work, and storm damage are the most common causes of commercial leaks. We repair all of them.",
         ],
       },
       {
@@ -384,7 +384,7 @@ export const servicePages: ServicePage[] = [
     ],
     checks: ["Leak detection", "Seam repairs", "Flashing repairs", "Ponding solutions", "Storm damage", "Honest assessments"],
     faqs: [
-      { q: "Do you offer emergency commercial repairs?", a: "Yes — we provide 24/7 emergency response for storm damage." },
+      { q: "Do you offer emergency commercial repairs?", a: "Yes, we provide 24/7 emergency response for storm damage." },
       { q: "Which roof types do you repair?", a: "TPO, EPDM rubber and most low-slope commercial systems." },
     ],
     related: ["commercial-roofing", "commercial-tpo-roofing-installation", "storm-repairs"],
@@ -397,7 +397,7 @@ export const servicePages: ServicePage[] = [
     metaDescription:
       "24/7 emergency storm and hail damage roof repair in southern Minnesota. We work directly with your insurance company. Call (507) 440-8756 now.",
     eyebrow: "Storm Repairs · 24/7",
-    h1: "Storm damage? We're on the way — day or night",
+    h1: "Storm damage? We're on the way, day or night",
     image: images.storm,
     intro:
       "Hail and straight-line winds hit southern Minnesota hard. When a storm damages your roof, we respond 24/7 to stop further water damage, then guide you through the insurance process from start to finish.",
@@ -424,7 +424,7 @@ export const servicePages: ServicePage[] = [
       },
       {
         q: "How long do I have to file an insurance claim?",
-        a: "Policies vary, so check with your agent — but it's always best to have the damage inspected and documented as soon as possible.",
+        a: "Policies vary, so check with your agent, but it's always best to have the damage inspected and documented as soon as possible.",
       },
     ],
     related: ["residential-roofing-inspections", "residential-roofing-replacement", "commercial-roofing-repairs"],

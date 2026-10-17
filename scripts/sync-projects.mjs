@@ -22,14 +22,14 @@ const STREET_ABBR = [
   [/\bRoad\b/i, "Rd"],
 ];
 
-// Privacy: publish the street name only (no house number) and round
-// coordinates to ~100 m so individual homes aren't pinpointed.
+// Text shows the street name only (no house number); pins use the exact
+// job coordinates, which ProjectMapIt already publishes.
 function publicStreet(street = "") {
   let s = street.replace(/^\s*\d+[A-Za-z]?\s+/, "").trim();
   for (const [re, abbr] of STREET_ABBR) s = s.replace(re, abbr);
   return s;
 }
-const round = (n) => Math.round(n * 1000) / 1000;
+const round = (n) => Math.round(n * 1e6) / 1e6;
 
 function normalize(r) {
   const cats = r.categories || [];

@@ -12,7 +12,7 @@ const SERVICES = [
   { id: "commercial", label: "Commercial", sub: "TPO, EPDM, repairs", icon: Building2 },
   { id: "repair", label: "Repair / leak", sub: "Fix a specific issue", icon: Wrench },
 ];
-const TIMING = ["As soon as possible", "Within a month", "In 1–3 months", "Just planning"];
+const TIMING = ["As soon as possible", "Within a month", "In 1 to 3 months", "Just planning"];
 
 // Set NEXT_PUBLIC_FORM_ENDPOINT (e.g. a Formspree or Web3Forms URL) to receive submissions.
 const ENDPOINT = process.env.NEXT_PUBLIC_FORM_ENDPOINT;
@@ -36,7 +36,7 @@ export default function QuoteForm() {
         const res = await fetch(ENDPOINT, {
           method: "POST",
           headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify({ ...data, _subject: `New roofing quote request — ${data.name}` }),
+          body: JSON.stringify({ ...data, _subject: `New roofing quote request: ${data.name}` }),
         });
         if (!res.ok) throw new Error();
       } else if (process.env.NODE_ENV === "production") {

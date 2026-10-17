@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Inter_Tight, Oswald } from "next/font/google";
+import { Inter, Inter_Tight } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
@@ -9,7 +9,6 @@ import { SITE_URL, businessSchema } from "@/lib/site";
 
 const display = Inter_Tight({ subsets: ["latin"], variable: "--font-display", weight: ["500", "600", "700"] });
 const sans = Inter({ subsets: ["latin"], variable: "--font-sans" });
-const wordmark = Oswald({ subsets: ["latin"], variable: "--font-wordmark", weight: ["500"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -35,7 +34,7 @@ export const viewport: Viewport = { themeColor: "#ffffff" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${sans.variable} ${wordmark.variable}`}>
+    <html lang="en" className={`${display.variable} ${sans.variable}`}>
       <body>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }} />
         <SmoothScroll />

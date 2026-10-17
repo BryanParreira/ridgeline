@@ -1,4 +1,4 @@
-import { ExternalLink, Star } from "lucide-react";
+import { ExternalLink, MessageSquareQuote } from "lucide-react";
 import { company } from "@/lib/content";
 import { Reveal } from "../Reveal";
 
@@ -10,9 +10,7 @@ export default function Reviews() {
         <Reveal className="review-cta">
           <div>
             <div className="stars" aria-hidden="true">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} size={18} fill="currentColor" />
-              ))}
+              <MessageSquareQuote size={26} />
             </div>
             <h2 className="h-md">Hear it from your neighbors.</h2>
             <p className="lede" style={{ marginTop: 8 }}>
