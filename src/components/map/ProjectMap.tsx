@@ -31,6 +31,12 @@ const SWATCH: Record<string, string> = {
 };
 const swatchFor = (color: string | null) => SWATCH[(color ?? "").toLowerCase().replace(/^max def /, "")] ?? "#8a8b8d";
 const shortProduct = (p: string | null) => (p ? p.replace(/^CertainTeed /, "") : "Other");
+// Compact chip labels so every shingle line fits in the sidebar.
+const chipLabel = (name: string) =>
+  name
+    .replace(/^Landmark (ClimateFlex)/, "$1")
+    .replace(/^Northgate ClimateFlex$/, "Northgate")
+    .replace(/^GAF Timberline HDZ$/, "GAF Timberline");
 
 type View = "map" | "satellite";
 
@@ -72,7 +78,7 @@ export default function ProjectMap({ projects }: { projects: Project[] }) {
   const products = useMemo(() => {
     const m = new Map<string, number>();
     projects.forEach((p) => m.set(shortProduct(p.product), (m.get(shortProduct(p.product)) ?? 0) + 1));
-    return [...m.entries()].sort((a, b) => b[1] - a[1]);
+    return [...m.entries()].sort((a, b) => (a[0] === "Other" ? 1 : b[0] === "Other" ? -1 : b[1] - a[1]));
   }, [projects]);
   const citiesList = useMemo(() => [...new Set(projects.map((p) => p.city))].sort(), [projects]);
 
@@ -323,12 +329,21 @@ export default function ProjectMap({ projects }: { projects: Project[] }) {
               </button>
             )}
           </label>
-          <div className="pmap-chips" role="group" aria-label="Filter by shingle line">
-            {[["All", projects.length] as const, ...products].map(([name, n]) => (
-              <button key={name} className={`chip ${product === name ? "on" : ""}`} onClick={() => setProduct(name)}>
-                {name} <span>{n}</span>
-              </button>
-            ))}
+          <div className="pmap-filter">
+            <span className="pmap-label">Shingle line</span>
+            <div className="pmap-chips" role="group" aria-label="Filter by shingle line">
+              {[["All", projects.length] as const, ...products].map(([name, n]) => (
+                <button
+                  key={name}
+                  className={`chip ${product === name ? "on" : ""}`}
+                  aria-pressed={product === name}
+                  title={name === "All" || name === "Other" ? undefined : name}
+                  onClick={() => setProduct(name)}
+                >
+                  {chipLabel(name)} <span>{n}</span>
+                </button>
+              ))}
+            </div>
           </div>
           <div className="pmap-row">
             <select className="pmap-select" value={city} onChange={(e) => setCity(e.target.value)} aria-label="Filter by city">
