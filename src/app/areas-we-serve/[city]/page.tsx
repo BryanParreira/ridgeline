@@ -58,7 +58,7 @@ export default async function CityPage({ params }: Props) {
       a: `We offer 24/7 emergency service. ${c.region === "home" ? `${c.name} is ${c.slug === "austin-mn" ? "our home base" : `about ${c.drive} from our Austin shop`}, so` : "We schedule"} we can typically get your roof tarped and secured quickly after a storm.`,
     },
     {
-      q: `Will you work with my insurance company on a ${c.name} storm claim?`,
+      q: `Will you work with my insurance company on my ${c.name} storm claim?`,
       a: "Yes. We document the damage, meet your adjuster on site, and work directly with your insurance company throughout the claim.",
     },
   ];
@@ -102,8 +102,9 @@ export default async function CityPage({ params }: Props) {
                 .filter((s) => s.slug !== "residential-roofing" && s.slug !== "commercial-roofing")
                 .map((s) => (
                   <li key={s.slug}>
-                    <Check size={16} />
-                    <Link href={`/${s.slug}`}>{s.label}</Link>
+                    <Link href={`/${s.slug}`}>
+                      <Check size={16} /> {s.label}
+                    </Link>
                   </li>
                 ))}
             </ul>

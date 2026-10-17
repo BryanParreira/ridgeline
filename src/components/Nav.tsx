@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { ArrowRight, ChevronRight, Menu, Phone, X } from "lucide-react";
 import { company, nav } from "@/lib/content";
 import Logo from "./Logo";
+import { getLenis } from "./SmoothScroll";
 
 export default function Nav() {
   const pathname = usePathname();
@@ -19,6 +20,9 @@ export default function Nav() {
   useEffect(() => setOpen(false), [pathname]);
   useEffect(() => {
     document.documentElement.style.overflow = open ? "hidden" : "";
+    const lenis = getLenis();
+    if (open) lenis?.stop();
+    else lenis?.start();
   }, [open]);
 
   return (

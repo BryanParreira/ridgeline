@@ -69,6 +69,7 @@ export default function ProjectMap({ projects }: { projects: Project[] }) {
   // Wheel scrolls the page until the user engages the map, so the page never feels "stuck".
   const [active, setActive] = useState(false);
   const [hint, setHint] = useState(false);
+  const [expanded, setExpanded] = useState(false);
   const hintTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   const byId = useMemo(() => new Map(projects.map((p) => [p.id, p])), [projects]);
@@ -154,7 +155,8 @@ export default function ProjectMap({ projects }: { projects: Project[] }) {
         // Touch: one finger scrolls the page, two fingers move the map.
         cooperativeGestures: window.matchMedia("(pointer: coarse)").matches,
       });
-      m.addControl(new maplibre.NavigationControl({ showCompass: false }), "bottom-right");
+      // Phones: keep zoom buttons clear of the fixed call bar at the bottom.
+      m.addControl(new maplibre.NavigationControl({ showCompass: false }), window.innerWidth < 860 ? "top-right" : "bottom-right");
       m.scrollZoom.setWheelZoomRate(1 / 450);
       if (!window.matchMedia("(pointer: coarse)").matches) m.scrollZoom.disable();
       map.current = m;
@@ -357,7 +359,7 @@ export default function ProjectMap({ projects }: { projects: Project[] }) {
             </p>
           </div>
         </div>
-        <div className="pmap-list" ref={listRef} data-lenis-prevent>
+        <div className={`pmap-list ${expanded ? "" : "collapsed"}`} ref={listRef} data-lenis-prevent>
           {filtered.map((p) => (
             <button
               key={p.id}
@@ -381,6 +383,11 @@ export default function ProjectMap({ projects }: { projects: Project[] }) {
             </button>
           ))}
           {filtered.length === 0 && <p className="pmap-empty">No projects match those filters.</p>}
+          {filtered.length > 8 && (
+            <button className="btn btn-outline pmap-more" onClick={() => setExpanded((e) => !e)}>
+              {expanded ? "Show fewer" : `Show all ${filtered.length} projects`}
+            </button>
+          )}
         </div>
       </aside>
 

@@ -24,7 +24,7 @@ export default function Intro({ projectCount, cityCount }: { projectCount: numbe
             <Reveal key={s.label} className="stat" delay={i * 0.06}>
               <strong>
                 <Counter to={s.n} />
-                <sup>{s.suf}</sup>
+                {s.suf === "+" ? <sup>+</sup> : s.suf}
               </strong>
               <span>{s.label}</span>
             </Reveal>
