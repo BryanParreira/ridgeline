@@ -31,7 +31,7 @@ npm run dev          # http://localhost:3000
    - Build command: `npm run build`
    - Start command: `npm start`
 4. Add these environment variables:
-   - `NEXT_PUBLIC_SITE_URL=https://www.ridgelineroofingmn.com`
+   - `NEXT_PUBLIC_SITE_URL=https://ridgelineroofingmn.site`
    - Quote form emails the owner through SMTP (`/api/quote`). Create a Gmail app password, then set:
      - `SMTP_HOST=smtp.gmail.com`, `SMTP_PORT=465`
      - `SMTP_USER=<Gmail address that sends>`, `SMTP_PASS=<16-char Gmail app password>`
@@ -88,6 +88,6 @@ The `/api/quote` route needs a Node server, so static export can't build with it
   - `/finding-quality-metal-roofing-in-st-paul-what-to-know`
   - `/how-to-choose-a-roofer-in-austin`
 - [ ] Set the SMTP vars and send a test submission.
-- [ ] Submit `https://www.ridgelineroofingmn.com/sitemap.xml` in Google Search Console.
+- [ ] Submit `https://ridgelineroofingmn.site/sitemap.xml` in Google Search Console.
 - [ ] Point the Google Business Profile website link at the new homepage.
 - [ ] Optional: embed live Google reviews in `src/components/home/Reviews.tsx`.

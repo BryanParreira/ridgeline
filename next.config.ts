@@ -19,7 +19,11 @@ const nextConfig: NextConfig = {
     ? { output: "export", trailingSlash: true }
     : {
         async redirects() {
-          return legacyRedirects.map((r) => ({ ...r, permanent: true }));
+          return [
+            // One canonical host: send www to the bare domain so Google sees a single site.
+            { source: "/:path*", has: [{ type: "host" as const, value: "www.ridgelineroofingmn.site" }], destination: "https://ridgelineroofingmn.site/:path*", permanent: true },
+            ...legacyRedirects.map((r) => ({ ...r, permanent: true })),
+          ];
         },
       }),
   images: { unoptimized: true },

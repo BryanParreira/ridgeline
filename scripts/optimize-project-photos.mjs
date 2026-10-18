@@ -1,7 +1,6 @@
 // Mirrors each project's first photo as small local WebP (480/800w) so cards load ~40KB instead of ~460KB.
 // Writes public/images/projects/<id>-<w>.webp and src/data/projectImages.json (ids that have local copies).
 // Skips files that already exist; failures just fall back to the remote photo.
-import sharp from "sharp";
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { existsSync } from "node:fs";
 
@@ -10,6 +9,13 @@ const OUT = new URL("../public/images/projects/", import.meta.url);
 await mkdir(OUT, { recursive: true });
 const WIDTHS = [480, 800];
 const ids = [];
+// sharp is only needed when a thumbnail is missing; load it lazily so a host without it can never break the build.
+let sharp = null;
+try {
+  sharp = (await import("sharp")).default;
+} catch {
+  console.warn("[photos] sharp unavailable; using committed thumbnails only.");
+}
 
 for (const p of projects) {
   const url = p.photos?.[0]?.l;
@@ -17,6 +23,7 @@ for (const p of projects) {
   const files = WIDTHS.map((w) => new URL(`${p.id}-${w}.webp`, OUT));
   try {
     if (!files.every((f) => existsSync(f))) {
+      if (!sharp) throw new Error("no sharp");
       const res = await fetch(url);
       if (!res.ok) throw new Error(String(res.status));
       const buf = Buffer.from(await res.arrayBuffer());

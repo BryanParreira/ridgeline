@@ -4,7 +4,7 @@ import { servicePages } from "./services";
 import { hasReviews, reviewData } from "./reviews";
 
 // Set NEXT_PUBLIC_SITE_URL in Hostinger env vars if the domain changes.
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://www.ridgelineroofingmn.com").replace(/\/$/, "");
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://ridgelineroofingmn.site").replace(/\/$/, "");
 
 export const abs = (path = "/") => `${SITE_URL}${path === "/" ? "/" : path}`;
 
