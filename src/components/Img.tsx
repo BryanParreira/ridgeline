@@ -12,7 +12,7 @@ type Props = {
   style?: CSSProperties;
 };
 
-// Serves AVIF/WebP at several widths for owner photos in /public/images; falls back to a plain <img> for remote photos.
+// Serves WebP at several widths (AVIF dropped: Hostinger static hosting sends .avif as text/plain) for owner photos in /public/images; falls back to a plain <img> for remote photos.
 export default function Img({ src, alt, sizes = "(max-width: 920px) 100vw, 50vw", priority, className, style }: Props) {
   const m = LOCAL.exec(src);
   const img = (
@@ -30,7 +30,6 @@ export default function Img({ src, alt, sizes = "(max-width: 920px) 100vw, 50vw"
   const set = (ext: string) => WIDTHS.map((w) => `/images/opt/${m[1]}-${w}.${ext} ${w}w`).join(", ");
   return (
     <picture>
-      <source type="image/avif" srcSet={set("avif")} sizes={sizes} />
       <source type="image/webp" srcSet={set("webp")} sizes={sizes} />
       {img}
     </picture>
