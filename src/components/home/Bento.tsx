@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, Camera, CloudLightning, FileCheck2, MapPinned, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowUpRight, Camera, CloudLightning, FileCheck2, MapPinned, ShieldCheck } from "lucide-react";
 import { images } from "@/lib/content";
 import Counter from "../Counter";
 import Img from "../Img";
@@ -81,12 +81,6 @@ export default function Bento({ projectCount, cityCount }: { projectCount: numbe
             <Link href="/service-area" className="btn btn-outline">
               See the service area <ArrowUpRight size={16} />
             </Link>
-          </Reveal>
-
-          <Reveal className="bento-tile t-feature" delay={0.1}>
-            <Sparkles size={26} />
-            <h3>Clean job sites</h3>
-            <p>Yard protected, magnet-swept for nails, left cleaner than we found it.</p>
           </Reveal>
         </div>
       </div>

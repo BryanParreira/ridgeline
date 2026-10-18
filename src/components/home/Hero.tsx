@@ -24,7 +24,7 @@ export default function Hero({ projectCount }: { projectCount: number }) {
       <div className="container ax-head">
         <div className="rise" style={d(0)}>
           <Link href="/storm-repairs" className="ax-pill">
-            <i /> Storm season? We&apos;re on call 24/7 <ArrowRight size={14} />
+            Storm season? We&apos;re on call 24/7 <ArrowRight size={14} />
           </Link>
         </div>
 

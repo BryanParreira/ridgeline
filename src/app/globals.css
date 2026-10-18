@@ -3224,7 +3224,7 @@ textarea {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 8px 8px 8px 14px;
+  padding: 8px 8px 8px 16px;
   border: 1px solid var(--line);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.8);
@@ -4413,5 +4413,157 @@ body {
   .card-img img,
   .t-photo img {
     transition: none;
+  }
+}
+
+/* =========================================================
+   Roof layers: smooth on phones (transform/opacity only)
+   ========================================================= */
+.rl-layer {
+  /* no filter/box-shadow transitions: those repaint every 3D layer on each frame */
+  filter: none !important;
+  transition: none;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.18);
+  backface-visibility: hidden;
+  will-change: transform;
+}
+.rl-layer.on {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.18);
+}
+.rl-layer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 3px var(--accent);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.rl-layer.on::after {
+  opacity: 1;
+}
+.rl-layer.metal,
+.rl-layer.metal.on {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
+}
+.rl-stack {
+  will-change: transform;
+}
+.rl-stage::after {
+  /* one static soft floor shadow instead of per-layer blur shadows */
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 6%;
+  width: calc(var(--s) * 0.9);
+  height: calc(var(--s) * 0.22);
+  transform: translateX(-50%);
+  background: radial-gradient(closest-side, rgba(0, 0, 0, 0.22), transparent);
+  pointer-events: none;
+}
+.rl-dots {
+  display: none;
+}
+@media (max-width: 860px) {
+  .rl-sticky {
+    height: 100svh;
+    align-items: flex-start;
+  }
+  .rl-grid {
+    padding-top: 84px;
+  }
+  .rl-stage {
+    height: 34svh;
+    perspective: 1100px;
+  }
+  .rl-copy .h-lg {
+    font-size: clamp(24px, 6.6vw, 32px);
+  }
+  .rl-dots {
+    display: flex;
+    gap: 6px;
+    margin: 14px 0 4px;
+  }
+  .rl-dots i {
+    flex: 1;
+    height: 3px;
+    border-radius: 3px;
+    background: var(--line);
+    transition: background 0.3s;
+  }
+  .rl-dots i.past {
+    background: #b7b6b2;
+  }
+  .rl-dots i.on {
+    background: var(--ink);
+  }
+  /* show only the active step: no height animation, no layout shift while scrolling */
+  .rl-list {
+    margin-top: 6px;
+    min-height: 150px;
+  }
+  .rl-list li {
+    display: none;
+    border-top: 0;
+    padding: 6px 0;
+  }
+  .rl-list li.on {
+    display: grid;
+    animation: pagein 0.3s ease-out;
+  }
+  .rl-list li p,
+  .rl-list li.on p {
+    max-height: none;
+    margin-top: 6px;
+    transition: none;
+    font-size: 15px;
+  }
+  .rl-list h3,
+  .rl-list li:not(.on) h3 {
+    font-size: 20px;
+  }
+}
+
+/* Bento stat tiles: label style must not hit the counter span inside the number */
+.t-stat span {
+  font-size: inherit;
+  color: inherit;
+}
+.t-stat > span {
+  font-size: 15px;
+  color: var(--muted);
+}
+.t-stat strong {
+  display: flex;
+  align-items: flex-start;
+  gap: 2px;
+  font-size: clamp(52px, 13vw, 72px);
+  color: var(--ink);
+}
+.t-stat strong sup {
+  font-size: 0.42em;
+  line-height: 1.1;
+  margin: 0.12em 0 0;
+  color: var(--muted);
+}
+
+@media (max-width: 860px) {
+  .rl-sticky {
+    align-items: center;
+  }
+  .rl-grid {
+    padding-top: 72px;
+    padding-bottom: 16px;
+  }
+  .rl-stage {
+    --s: min(46vw, 200px);
+    height: 36svh;
+  }
+  .rl-stack {
+    translate: 0 8%;
+  }
+  .rl-list {
+    min-height: 130px;
   }
 }
