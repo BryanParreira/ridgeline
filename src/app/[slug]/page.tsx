@@ -12,7 +12,7 @@ import { company } from "@/lib/content";
 import { getService, servicePages } from "@/lib/services";
 import { projects } from "@/lib/projects";
 import { cities } from "@/lib/cities";
-import { abs, breadcrumbSchema, businessId, faqSchema } from "@/lib/site";
+import { abs, breadcrumbSchema, businessId, faqSchema, pageMeta } from "@/lib/site";
 
 export const dynamicParams = false;
 export const generateStaticParams = () => servicePages.map((s) => ({ slug: s.slug }));
@@ -22,12 +22,7 @@ type Props = { params: Promise<{ slug: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const s = getService((await params).slug);
   if (!s) return {};
-  return {
-    title: s.metaTitle,
-    description: s.metaDescription,
-    alternates: { canonical: `/${s.slug}` },
-    openGraph: { title: s.metaTitle, description: s.metaDescription, url: abs(`/${s.slug}`), images: [s.image] },
-  };
+  return pageMeta({ title: s.metaTitle, description: s.metaDescription, path: `/${s.slug}`, image: s.image });
 }
 
 export default async function ServicePage({ params }: Props) {
@@ -47,7 +42,7 @@ export default async function ServicePage({ params }: Props) {
   const showWork = s.group === "residential" || s.group === "storm";
 
   return (
-    <main>
+    <main id="main">
       <JsonLd
         data={[
           breadcrumbSchema(crumbs),

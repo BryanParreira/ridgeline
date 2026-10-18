@@ -1,5 +1,11 @@
 import Hero from "@/components/home/Hero";
-import Intro from "@/components/home/Intro";
+import Marquee from "@/components/Marquee";
+import AtAGlance from "@/components/AtAGlance";
+import CheckupTeaser from "@/components/home/CheckupTeaser";
+import BeforeAfterSection from "@/components/home/BeforeAfterSection";
+import RoofLayers from "@/components/home/RoofLayers";
+import Bento from "@/components/home/Bento";
+import RidgeDivider from "@/components/RidgeDivider";
 import Services from "@/components/home/Services";
 import RecentWork from "@/components/home/RecentWork";
 import Materials from "@/components/home/Materials";
@@ -18,16 +24,25 @@ import { faqSchema } from "@/lib/site";
 
 export default function Home() {
   return (
-    <main>
+    <main id="main">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema(faqs)) }} />
       <Hero projectCount={projects.length} />
-      <Intro projectCount={projects.length} cityCount={cities.length} />
+      <Marquee />
+      <AtAGlance
+        summary="RidgeLine Roofing is a locally owned roofing contractor in Austin, Minnesota. We replace and repair residential shingle and metal roofs, install commercial TPO and EPDM roofing, and handle hail and wind damage with direct insurance claim help. Inspections and written quotes are free."
+        area="Austin, Albert Lea, Rochester, Owatonna, Waseca, Kasson, Faribault, Mankato, Red Wing and north Iowa."
+      />
+      <Bento projectCount={projects.length} cityCount={cities.length} />
       <Services />
+      <RoofLayers />
+      <BeforeAfterSection />
       <RecentWork items={projects.slice(0, 6)} total={projects.length} />
       <Process />
       <Materials />
+      <RidgeDivider />
       <StormBand />
       <AreaPreview />
+      <CheckupTeaser />
       <Reviews />
 
       <section className="section alt" id="quote">

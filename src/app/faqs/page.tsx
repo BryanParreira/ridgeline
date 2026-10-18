@@ -5,14 +5,14 @@ import JsonLd from "@/components/JsonLd";
 import CtaBlock from "@/components/CtaBlock";
 import { faqs } from "@/lib/content";
 import { servicePages } from "@/lib/services";
-import { breadcrumbSchema, faqSchema } from "@/lib/site";
+import { breadcrumbSchema, faqSchema, pageMeta } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Roofing FAQs | RidgeLine Roofing | Austin, MN",
   description:
     "Answers to common roofing questions: repair vs. replacement, insurance claims, storm damage, shingle vs. metal, timelines and more.",
-  alternates: { canonical: "/faqs" },
-};
+  path: "/faqs",
+});
 
 export default function FaqPage() {
   const all = [...faqs, ...servicePages.flatMap((s) => s.faqs)];
@@ -22,7 +22,7 @@ export default function FaqPage() {
     { name: "FAQs", path: "/faqs" },
   ];
   return (
-    <main>
+    <main id="main">
       <JsonLd data={[breadcrumbSchema(crumbs), faqSchema(unique)]} />
       <PageHero
         crumbs={crumbs}

@@ -4,7 +4,7 @@ import { Ridges } from "@/components/Reveal";
 
 export default function NotFound() {
   return (
-    <main className="section">
+    <main id="main" className="section">
       <div className="container cta">
         <Ridges />
         <h1 className="h-lg">This page blew off in the last storm.</h1>

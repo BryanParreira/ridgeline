@@ -2,6 +2,8 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { services } from "@/lib/content";
 import { Reveal } from "../Reveal";
+import Img from "../Img";
+import SplitHeading from "../SplitHeading";
 
 const hrefs: Record<string, string> = {
   residential: "/residential-roofing",
@@ -15,14 +17,14 @@ export default function Services() {
       <div className="container">
         <Reveal className="section-head">
           <span className="eyebrow">Services</span>
-          <h2 className="h-lg">Everything your roof needs, from one local crew.</h2>
+          <SplitHeading className="h-lg">Everything your roof needs, from one local crew.</SplitHeading>
         </Reveal>
         <div className="grid-3">
           {services.map((s, i) => (
             <Reveal key={s.key} delay={i * 0.08}>
               <Link href={hrefs[s.key]} className="card">
                 <div className="card-img">
-                  <img src={s.image} alt={`${s.title} by RidgeLine Roofing`} loading="lazy" />
+                  <Img src={s.image} alt={`${s.title} by RidgeLine Roofing`} sizes="(max-width: 920px) 100vw, 33vw" />
                 </div>
                 <div className="card-body">
                   <h3>{s.title}</h3>

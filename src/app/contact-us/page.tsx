@@ -3,18 +3,18 @@ import JsonLd from "@/components/JsonLd";
 import QuoteForm from "@/components/QuoteForm";
 import ContactLines from "@/components/ContactLines";
 import { Reveal, Ridges } from "@/components/Reveal";
-import { breadcrumbSchema } from "@/lib/site";
+import { breadcrumbSchema, pageMeta } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Contact RidgeLine Roofing | Get a Roofing Quote | Austin, MN",
   description:
     "Request a roofing quote or inspection from RidgeLine Roofing in Austin, MN. Call (507) 440-8756, available 24/7 for storm emergencies.",
-  alternates: { canonical: "/contact-us" },
-};
+  path: "/contact-us",
+});
 
 export default function ContactPage() {
   return (
-    <main>
+    <main id="main">
       <JsonLd
         data={breadcrumbSchema([
           { name: "Home", path: "/" },

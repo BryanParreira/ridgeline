@@ -5,14 +5,14 @@ import JsonLd from "@/components/JsonLd";
 import CtaBlock from "@/components/CtaBlock";
 import AreaPreview from "@/components/home/AreaPreview";
 import { cities, regionInfo, type Region } from "@/lib/cities";
-import { breadcrumbSchema } from "@/lib/site";
+import { breadcrumbSchema, pageMeta } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Service Area | Roofing in Southern MN & North Iowa | RidgeLine Roofing",
   description:
     "RidgeLine Roofing serves Austin, Albert Lea, Rochester, Owatonna, Waseca, north Iowa and the Twin Cities metro. Find roofing services in your community.",
-  alternates: { canonical: "/service-area" },
-};
+  path: "/service-area",
+});
 
 const order: Region[] = ["home", "iowa", "metro"];
 
@@ -22,7 +22,7 @@ export default function ServiceArea() {
     { name: "Service Area", path: "/service-area" },
   ];
   return (
-    <main>
+    <main id="main">
       <JsonLd data={breadcrumbSchema(crumbs)} />
       <PageHero
         crumbs={crumbs}

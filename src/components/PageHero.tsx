@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Phone } from "lucide-react";
 import { company } from "@/lib/content";
 import { Reveal, Ridges } from "./Reveal";
+import Img from "./Img";
 
 type Crumb = { name: string; path: string };
 
@@ -50,7 +51,7 @@ export default function PageHero({
         </Reveal>
         {image && (
           <Reveal className="page-hero-img" delay={0.1}>
-            <img src={image} alt={imageAlt ?? title} fetchPriority="high" />
+            <Img src={image} alt={imageAlt ?? title} priority />
           </Reveal>
         )}
       </div>

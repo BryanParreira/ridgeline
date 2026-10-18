@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import { steps } from "@/lib/content";
 import { Reveal } from "../Reveal";
+import SplitHeading from "../SplitHeading";
 
 export default function Process() {
   return (
@@ -10,7 +11,7 @@ export default function Process() {
       <div className="container">
         <Reveal className="section-head">
           <span className="eyebrow">How it works</span>
-          <h2 className="h-lg">A simple process with no surprises.</h2>
+          <SplitHeading className="h-lg">A simple process with no surprises.</SplitHeading>
         </Reveal>
         <ol className="steps">
           {steps.map((s, i) => (

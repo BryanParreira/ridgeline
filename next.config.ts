@@ -24,6 +24,19 @@ const nextConfig: NextConfig = {
       }),
   images: { unoptimized: true },
   poweredByHeader: false,
+  compress: true,
+  experimental: { optimizePackageImports: ["lucide-react", "motion"] },
+  ...(isStatic
+    ? {}
+    : {
+        async headers() {
+          const longCache = [{ key: "Cache-Control", value: "public, max-age=604800, stale-while-revalidate=86400" }];
+          return [
+            { source: "/images/:path*", headers: longCache },
+            { source: "/brand/:path*", headers: longCache },
+          ];
+        },
+      }),
 };
 
 export default nextConfig;

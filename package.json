@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "sync:projects": "node scripts/sync-projects.mjs",
-    "prebuild": "node scripts/sync-projects.mjs",
+    "sync:reviews": "node scripts/sync-reviews.mjs",
+    "optimize:images": "node scripts/optimize-images.mjs",
+    "prebuild": "node scripts/sync-projects.mjs && node scripts/optimize-project-photos.mjs && node scripts/sync-reviews.mjs",
     "build:static": "STATIC_EXPORT=1 next build"
   },
   "dependencies": {

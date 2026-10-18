@@ -7,12 +7,13 @@ import FAQ from "@/components/FAQ";
 import JsonLd from "@/components/JsonLd";
 import ProjectCards from "@/components/ProjectCards";
 import CtaBlock from "@/components/CtaBlock";
+import AtAGlance from "@/components/AtAGlance";
 import { Reveal } from "@/components/Reveal";
 import { company, images } from "@/lib/content";
 import { cities, distanceKm, getCity, regionInfo } from "@/lib/cities";
 import { projects, projectsNear } from "@/lib/projects";
 import { servicePages } from "@/lib/services";
-import { abs, breadcrumbSchema, businessId, faqSchema } from "@/lib/site";
+import { abs, breadcrumbSchema, businessId, faqSchema, pageMeta } from "@/lib/site";
 
 export const dynamicParams = false;
 export const generateStaticParams = () => cities.map((c) => ({ city: c.slug }));
@@ -24,12 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!c) return {};
   const title = `Roofing Contractor in ${c.name}, ${c.state} | RidgeLine Roofing`;
   const description = `Roof replacement, storm & hail damage repair, and commercial roofing in ${c.name}, ${c.state}. Locally owned, 20+ years experience, insurance claim help. Call ${company.phone}.`;
-  return {
-    title,
-    description,
-    alternates: { canonical: `/areas-we-serve/${c.slug}` },
-    openGraph: { title, description, url: abs(`/areas-we-serve/${c.slug}`) },
-  };
+  return pageMeta({ title, description, path: `/areas-we-serve/${c.slug}` });
 }
 
 export default async function CityPage({ params }: Props) {
@@ -64,7 +60,7 @@ export default async function CityPage({ params }: Props) {
   ];
 
   return (
-    <main>
+    <main id="main">
       <JsonLd
         data={[
           breadcrumbSchema(crumbs),
@@ -87,6 +83,12 @@ export default async function CityPage({ params }: Props) {
         intro={region.intro(c)}
         image={near[0]?.photos[0]?.l ?? images.residential}
         imageAlt={`Roof replacement near ${c.name}, ${c.state} by RidgeLine Roofing`}
+      />
+
+      <AtAGlance
+        heading={`Roofing in ${c.name}, ${c.state}`}
+        summary={`RidgeLine Roofing provides roof replacement, repair, inspections, storm and hail damage repair and commercial roofing in ${c.name}, ${c.county}. ${c.slug === "austin-mn" ? "Our shop is in downtown Austin." : `We are about ${c.drive} from our Austin shop.`} Free inspections, written quotes and 24/7 emergency service.`}
+        area={`${c.name}, ${c.state} and nearby communities in ${c.county}.`}
       />
 
       <section className="section">

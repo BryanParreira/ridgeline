@@ -4,17 +4,17 @@ import CtaBlock from "@/components/CtaBlock";
 import ProjectMap from "@/components/map/ProjectMap";
 import { Reveal, Ridges } from "@/components/Reveal";
 import { projects } from "@/lib/projects";
-import { abs, breadcrumbSchema, businessId } from "@/lib/site";
+import { abs, breadcrumbSchema, businessId, pageMeta } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: `Project Map | ${projects.length}+ Roofs in Austin & Southern MN | RidgeLine Roofing`,
   description: `Explore ${projects.length}+ real roof replacements by RidgeLine Roofing on an interactive map. CertainTeed Landmark shingles in Austin, Albert Lea and across southern Minnesota.`,
-  alternates: { canonical: "/portfolio" },
-};
+  path: "/portfolio",
+});
 
 export default function PortfolioPage() {
   return (
-    <main>
+    <main id="main">
       <JsonLd
         data={[
           breadcrumbSchema([

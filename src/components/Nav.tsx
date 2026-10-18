@@ -78,22 +78,40 @@ export default function Nav() {
         {open && (
           <motion.div
             className="mobile-menu"
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, clipPath: "inset(0 0 100% 0)" }}
+            animate={{ opacity: 1, clipPath: "inset(0 0 0% 0)" }}
+            exit={{ opacity: 0, clipPath: "inset(0 0 100% 0)" }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           >
-            {[{ label: "Home", href: "/" }, ...nav, { label: "Contact", href: "/contact-us" }].map((item) => (
-              <Link key={item.href} href={item.href} className="item">
-                {item.label} <ChevronRight size={20} />
-              </Link>
+            {[{ label: "Home", href: "/" }, ...nav, { label: "Contact", href: "/contact-us" }].map((item, i) => (
+              <motion.div
+                key={item.href}
+                initial={{ opacity: 0, x: -16 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4, delay: 0.08 + i * 0.045, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <Link href={item.href} className="item" onClick={() => setOpen(false)}>
+                  {item.label} <ChevronRight size={20} />
+                </Link>
+              </motion.div>
             ))}
-            <a href={company.phoneHref} className="btn btn-primary">
-              <Phone size={17} /> Call {company.phone} <ArrowRight size={16} />
-            </a>
+            <motion.div
+              className="mobile-menu-actions"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.45 }}
+            >
+              <Link href="/contact-us" className="btn btn-primary" onClick={() => setOpen(false)}>
+                Get a free quote <ArrowRight size={16} />
+              </Link>
+              <a href={company.phoneHref} className="btn btn-outline">
+                <Phone size={17} /> Call {company.phone}
+              </a>
+              <p>24/7 emergency storm service · Austin, MN</p>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+      </header>
   );
 }
