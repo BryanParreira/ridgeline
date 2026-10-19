@@ -4,6 +4,7 @@ export const company = {
   name: "RidgeLine Roofing",
   phone: "(507) 440-8756",
   phoneHref: "tel:+15074408756",
+  smsHref: "sms:+15074408756",
   address: "209 Main St S, Austin, MN 55912",
   mapsHref: "https://maps.google.com/?q=209+Main+St+S+Austin+MN+55912",
   years: 20,

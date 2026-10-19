@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import JsonLd from "@/components/JsonLd";
-import QuoteForm from "@/components/QuoteForm";
+import { MessageSquare, Phone } from "lucide-react";
+import { company } from "@/lib/content";
 import ContactLines from "@/components/ContactLines";
 import { Reveal, Ridges } from "@/components/Reveal";
 import { breadcrumbSchema, pageMeta } from "@/lib/site";
@@ -8,7 +9,7 @@ import { breadcrumbSchema, pageMeta } from "@/lib/site";
 export const metadata: Metadata = pageMeta({
   title: "Contact RidgeLine Roofing | Get a Roofing Quote | Austin, MN",
   description:
-    "Request a roofing quote or inspection from RidgeLine Roofing in Austin, MN. Call (507) 440-8756, available 24/7 for storm emergencies.",
+    "Call for a roofing quote or inspection from RidgeLine Roofing in Austin, MN. Call (507) 440-8756, available 24/7 for storm emergencies.",
   path: "/contact-us",
 });
 
@@ -22,7 +23,7 @@ export default function ContactPage() {
         ])}
       />
       <section className="section" style={{ paddingTop: "clamp(40px,6vw,72px)" }}>
-        <div className="container quote">
+        <div className="container" style={{ maxWidth: 760 }}>
           <Reveal>
             <Ridges />
             <p className="eyebrow" style={{ marginTop: 16, display: "block" }}>
@@ -32,13 +33,17 @@ export default function ContactPage() {
               Let&apos;s talk about your roof.
             </h1>
             <p className="lede">
-              Tell us what you need and we&apos;ll follow up to schedule an inspection. For storm emergencies, call us
-              any time.
+              Call us to schedule an inspection and get a free quote. For storm emergencies, call any time.
             </p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 24 }}>
+              <a href={company.phoneHref} className="btn btn-primary">
+                <Phone size={18} /> Call {company.phone}
+              </a>
+              <a href={company.smsHref} className="btn btn-outline">
+                <MessageSquare size={18} /> Text us
+              </a>
+            </div>
             <ContactLines />
-          </Reveal>
-          <Reveal delay={0.1}>
-            <QuoteForm />
           </Reveal>
         </div>
       </section>

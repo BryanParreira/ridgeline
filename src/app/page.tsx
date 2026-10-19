@@ -13,13 +13,13 @@ import Process from "@/components/home/Process";
 import StormBand from "@/components/home/StormBand";
 import Reviews from "@/components/home/Reviews";
 import AreaPreview from "@/components/home/AreaPreview";
-import QuoteForm from "@/components/QuoteForm";
+import { MessageSquare, Phone } from "lucide-react";
 import ContactLines from "@/components/ContactLines";
 import FAQ from "@/components/FAQ";
 import { Reveal } from "@/components/Reveal";
 import { projects } from "@/lib/projects";
 import { cities } from "@/lib/cities";
-import { faqs } from "@/lib/content";
+import { company, faqs } from "@/lib/content";
 import { faqSchema } from "@/lib/site";
 
 export default function Home() {
@@ -46,19 +46,24 @@ export default function Home() {
       <Reviews />
 
       <section className="section alt" id="quote">
-        <div className="container quote">
+        <div className="container" style={{ maxWidth: 760 }}>
           <Reveal>
             <span className="eyebrow">Get a quote</span>
             <h2 className="h-lg" style={{ marginTop: 14 }}>
-              Tell us about your roof.
+              Call for a free quote.
             </h2>
             <p className="lede" style={{ marginTop: 14 }}>
-              Three quick steps. We&apos;ll follow up to schedule your inspection and give you a clear, written quote.
+              Talk to a real person. We&apos;ll schedule your inspection and give you a clear, written quote.
             </p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 24 }}>
+              <a href={company.phoneHref} className="btn btn-primary">
+                <Phone size={18} /> Call {company.phone}
+              </a>
+              <a href={company.smsHref} className="btn btn-outline">
+                <MessageSquare size={18} /> Text us
+              </a>
+            </div>
             <ContactLines />
-          </Reveal>
-          <Reveal delay={0.1}>
-            <QuoteForm />
           </Reveal>
         </div>
       </section>

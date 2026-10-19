@@ -1,12 +1,11 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Phone, ClipboardCheck } from "lucide-react";
+import { Phone, MessageSquare } from "lucide-react";
 import { company } from "@/lib/content";
 
-// Sticky call/quote bar for phones. Slides away while typing (keyboard open), on the contact page,
+// Sticky call/text bar for phones. Slides away while typing (keyboard open), on the contact page,
 // and when the quote form is on screen, so it never covers what the visitor is doing.
 export default function MobileCallBar() {
   const pathname = usePathname();
@@ -46,9 +45,9 @@ export default function MobileCallBar() {
       <a href={company.phoneHref} className="btn btn-outline" tabIndex={hidden ? -1 : 0}>
         <Phone size={16} /> Call now
       </a>
-      <Link href="/contact-us" className="btn btn-primary" tabIndex={hidden ? -1 : 0}>
-        <ClipboardCheck size={16} /> Free quote
-      </Link>
+      <a href={company.smsHref} className="btn btn-primary" tabIndex={hidden ? -1 : 0}>
+        <MessageSquare size={16} /> Text us
+      </a>
     </div>
   );
 }
