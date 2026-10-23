@@ -11,11 +11,10 @@ for (const f of readdirSync(SRC).filter((f) => /\.jpe?g$/i.test(f))) {
   const name = f.replace(/\.jpe?g$/i, "");
   const meta = await sharp(`${SRC}/${f}`).metadata();
   for (const w of WIDTHS) {
-    if (w > meta.width && w !== WIDTHS[0]) continue;
     for (const [ext, opts] of [["webp", { quality: 76 }]]) {
       const out = `${OUT}/${name}-${w}.${ext}`;
       if (existsSync(out)) continue;
-      await sharp(`${SRC}/${f}`).resize({ width: w, withoutEnlargement: true })[ext](opts).toFile(out);
+      await sharp(`${SRC}/${f}`).resize({ width: w })[ext](opts).toFile(out);
     }
   }
   console.log(name, meta.width + "x" + meta.height);
