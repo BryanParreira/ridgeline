@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { materials, type Material } from "@/lib/content";
+import Img from "../Img";
 import { Reveal } from "../Reveal";
 
 function Swatch({ kind }: { kind: Material["pattern"] }) {
@@ -131,7 +132,11 @@ export default function Materials() {
                   transition={{ duration: 0.4 }}
                   style={{ position: "absolute", inset: 0 }}
                 >
-                  <Swatch kind={m.pattern} />
+                  {m.photo ? (
+                    <Img src={m.photo.src} alt={m.photo.alt} sizes="(max-width: 920px) 100vw, 50vw" />
+                  ) : (
+                    <Swatch kind={m.pattern} />
+                  )}
                 </motion.div>
               </AnimatePresence>
             </div>

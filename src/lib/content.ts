@@ -87,6 +87,7 @@ export type Material = {
   desc: string;
   traits: { label: string; value: number }[];
   pattern: "shingle" | "metal" | "tpo" | "epdm";
+  photo?: { src: string; alt: string };
 };
 
 // Lifespans are typical industry ranges, not warranties.
@@ -104,6 +105,7 @@ export const materials: Material[] = [
       { label: "Value", value: 95 },
     ],
     pattern: "shingle",
+    photo: { src: "/images/material-architectural-shingle.jpg", alt: "Architectural asphalt shingles on a roof" },
   },
   {
     key: "metal",
@@ -118,6 +120,7 @@ export const materials: Material[] = [
       { label: "Value", value: 75 },
     ],
     pattern: "metal",
+    photo: { src: "/images/material-metal-standing-seam.jpg", alt: "Standing-seam metal roof panels" },
   },
   {
     key: "tpo",
@@ -132,6 +135,7 @@ export const materials: Material[] = [
       { label: "Value", value: 85 },
     ],
     pattern: "tpo",
+    photo: { src: "/images/material-tpo-membrane.jpg", alt: "White TPO membrane on a commercial flat roof" },
   },
   {
     key: "epdm",
@@ -146,6 +150,7 @@ export const materials: Material[] = [
       { label: "Value", value: 88 },
     ],
     pattern: "epdm",
+    photo: { src: "/images/material-epdm-rubber.jpg", alt: "Black rubber roofing membrane rolled out on a flat roof" },
   },
 ];
 
