@@ -12,7 +12,7 @@ export const businessId = `${SITE_URL}/#business`;
 export const websiteId = `${SITE_URL}/#website`;
 
 // Bump when page content meaningfully changes; feeds sitemap <lastmod> (Google ignores lastmod that changes every build).
-export const CONTENT_UPDATED = new Date("2026-10-17");
+export const CONTENT_UPDATED = new Date("2026-11-11");
 
 export const OG_IMAGE = { url: "/og.jpg", width: 1200, height: 630, alt: "RidgeLine Roofing, Austin MN roofing contractor" };
 

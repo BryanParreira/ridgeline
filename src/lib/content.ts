@@ -8,6 +8,13 @@ export const company = {
   address: "209 Main St S, Austin, MN 55912",
   mapsHref: "https://maps.google.com/?q=209+Main+St+S+Austin+MN+55912",
   years: 20,
+  // To show Cory's photo, save it as public/images/team/cory-christenson.jpg (it appears automatically after the next build).
+  owner: {
+    name: "Cory Christenson",
+    title: "Owner",
+    photo: "/images/team/cory-christenson.jpg",
+    license: "MN:RR787622",
+  },
   social: {
     facebook: "https://www.facebook.com/ridgelineroofing101",
     google: "https://www.google.com/maps/search/?api=1&query=RidgeLine+Roofing+Austin+MN",
@@ -39,6 +46,7 @@ export const nav = [
   { label: "Storm Repairs", href: "/storm-repairs" },
   { label: "Project Map", href: "/portfolio" },
   { label: "Service Area", href: "/service-area" },
+  { label: "About", href: "/about-us" },
   { label: "FAQ", href: "/faqs" },
 ];
 

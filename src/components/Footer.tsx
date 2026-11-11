@@ -77,6 +77,9 @@ export default function Footer() {
                 <Link href="/portfolio">Project map</Link>
               </li>
               <li>
+                <Link href="/about-us">About us</Link>
+              </li>
+              <li>
                 <Link href="/faqs">FAQs</Link>
               </li>
               <li>
