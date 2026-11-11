@@ -90,10 +90,10 @@ export default function Footer() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             className="footer-badge"
-            src="/brand/certainteed-sidingmaster-pro.jpg"
+            src="/brand/certainteed-sidingmaster-pro.png"
             alt="CertainTeed SidingMaster Pro Credentialed contractor"
-            width={112}
-            height={112}
+            width={104}
+            height={95}
             loading="lazy"
           />
         </div>

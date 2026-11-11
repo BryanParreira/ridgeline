@@ -1259,13 +1259,12 @@ p {
   padding-top: 24px;
   margin-top: 56px;
   font-size: 14px;
+  align-items: center;
 }
 .footer-badge {
-  width: 112px;
-  height: 112px;
-  border-radius: 14px;
-  background: #fff;
-  object-fit: contain;
+  width: 104px;
+  height: auto;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.45));
 }
 .socials {
   display: flex;
@@ -1854,7 +1853,7 @@ p {
   position: absolute;
   top: 14px;
   right: 14px;
-  width: min(380px, calc(100% - 28px));
+  width: min(420px, calc(100% - 28px));
   max-height: calc(100% - 28px);
   overflow-y: auto;
   background: #fff;
@@ -1882,10 +1881,154 @@ p {
   background: var(--surface);
   overflow: hidden;
 }
+.pmap-photo-open {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+  display: block;
+}
 .pmap-photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.pmap-zoom {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 11px;
+  border-radius: 999px;
+  background: rgba(22, 22, 22, 0.75);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+}
+.pmap-thumbs {
+  display: flex;
+  gap: 6px;
+  padding: 10px 14px 0;
+  overflow-x: auto;
+}
+.pmap-thumbs button {
+  flex: 0 0 auto;
+  width: 64px;
+  height: 46px;
+  padding: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  opacity: 0.7;
+}
+.pmap-thumbs button.on {
+  border-color: var(--accent);
+  opacity: 1;
+}
+.pmap-thumbs img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.pmap-addr {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.pmap-facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 14px;
+  margin: 4px 0 2px;
+  padding: 12px 0;
+  border-block: 1px solid var(--line);
+}
+.pmap-facts dt {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.pmap-facts dd {
+  margin: 2px 0 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.pmap-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(10, 10, 10, 0.97);
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  padding: 20px 20px 18px;
+  gap: 14px;
+}
+.lb-stage {
+  position: relative;
+  min-height: 0;
+  display: grid;
+  place-items: center;
+}
+.lb-stage img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+.lb-close,
+.lb-nav {
+  position: absolute;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  display: grid;
+  place-items: center;
+}
+.lb-close:hover,
+.lb-nav:hover {
+  background: rgba(255, 255, 255, 0.26);
+}
+.lb-close {
+  top: 16px;
+  right: 16px;
+}
+.lb-nav {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.lb-nav.l {
+  left: 4px;
+}
+.lb-nav.r {
+  right: 4px;
+}
+.lb-caption {
+  display: grid;
+  gap: 2px;
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
+}
+.lb-caption span {
+  color: #b5b5b5;
+  font-size: 13px;
 }
 .pmap-nav {
   position: absolute;
@@ -1980,59 +2123,32 @@ p {
     right: 10px;
     left: 10px;
     width: auto;
-    display: grid;
-    grid-template-columns: 112px minmax(0, 1fr);
-    overflow: hidden;
+    max-height: calc(100% - 20px);
   }
   .pmap-close {
-    top: 6px;
-    right: 6px;
-    width: 28px;
-    height: 28px;
+    top: 8px;
+    right: 8px;
   }
   .pmap-photo {
-    aspect-ratio: auto;
-    height: 100%;
-    min-height: 140px;
-  }
-  .pmap-nav {
-    display: none;
-  }
-  .pmap-counter {
-    left: 6px;
-    bottom: 6px;
-    font-size: 11px;
+    aspect-ratio: 16 / 10;
   }
   .pmap-info {
-    padding: 10px 12px 12px;
-    gap: 3px;
-  }
-  .pmap-info .work-meta {
-    font-size: 12px;
-    padding-right: 26px;
-  }
-  .pmap-info .work-meta span:last-child {
-    display: none;
-  }
-  .pmap-info h3 {
-    font-size: 17px;
-    gap: 8px;
-  }
-  .pmap-info p {
-    font-size: 12px;
-    line-height: 1.4;
-  }
-  .pmap-actions {
-    margin-top: 6px;
+    padding: 12px 14px 14px;
     gap: 6px;
   }
-  .pmap-actions .btn {
-    padding: 9px 6px;
-    font-size: 13px;
-    gap: 5px;
+  .pmap-info h3 {
+    font-size: 19px;
   }
-  .pmap-actions .btn svg {
-    display: none;
+  .pmap-facts {
+    gap: 8px 12px;
+    padding: 10px 0;
+  }
+  .pmap-lightbox {
+    padding: 12px 8px 14px;
+  }
+  .lb-nav {
+    width: 38px;
+    height: 38px;
   }
 }
 

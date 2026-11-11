@@ -5,7 +5,7 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { GeoJSONSource, Map as MlMap, Marker } from "maplibre-gl";
-import { ArrowRight, ChevronLeft, ChevronRight, Crosshair, Expand, MapPin, Search, X } from "lucide-react";
+import { ArrowRight, Calendar, ChevronLeft, ChevronRight, Crosshair, Expand, Hammer, ImageIcon, MapPin, Maximize2, Palette, Search, X } from "lucide-react";
 import { formatMonth, projectAlt, type Project } from "@/lib/projects";
 
 const STYLE = "https://tiles.openfreemap.org/styles/positron";
@@ -65,6 +65,7 @@ export default function ProjectMap({ projects }: { projects: Project[] }) {
   const [selected, setSelected] = useState<Project | null>(null);
   const [hover, setHover] = useState<string | null>(null);
   const [photo, setPhoto] = useState(0);
+  const [lightbox, setLightbox] = useState(false);
   const [, setMarkerTick] = useState(0);
   // Wheel scrolls the page until the user engages the map, so the page never feels "stuck".
   const [active, setActive] = useState(false);
@@ -121,6 +122,7 @@ export default function ProjectMap({ projects }: { projects: Project[] }) {
     (p: Project | null, fly = true) => {
       setSelected(p);
       setPhoto(0);
+      setLightbox(false);
       if (p && fly) flyToHouse(p);
       const url = new URL(window.location.href);
       if (p) url.searchParams.set("p", p.id);
@@ -305,13 +307,32 @@ export default function ProjectMap({ projects }: { projects: Project[] }) {
     hintTimer.current = setTimeout(() => setHint(false), 1400);
   }, [active]);
 
+  const photos = selected?.photos ?? [];
+  const step = useCallback((d: number) => setPhoto((i) => (photos.length ? (i + d + photos.length) % photos.length : 0)), [photos.length]);
+
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && select(null, false);
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        if (lightbox) setLightbox(false);
+        else select(null, false);
+      } else if (selected && photos.length > 1 && (e.key === "ArrowLeft" || e.key === "ArrowRight")) {
+        const t = e.target as HTMLElement | null;
+        if (t && /^(INPUT|SELECT|TEXTAREA)$/.test(t.tagName)) return;
+        step(e.key === "ArrowLeft" ? -1 : 1);
+      }
+    };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [select]);
+  }, [select, lightbox, selected, photos.length, step]);
 
-  const photos = selected?.photos ?? [];
+  useEffect(() => {
+    if (!lightbox) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [lightbox]);
 
   return (
     <div className="pmap">
@@ -458,23 +479,28 @@ export default function ProjectMap({ projects }: { projects: Project[] }) {
                 <X size={18} />
               </button>
               <div className="pmap-photo">
-                <AnimatePresence mode="wait" initial={false}>
-                  <motion.img
-                    key={photos[photo]?.l}
-                    src={photos[photo]?.l}
-                    alt={projectAlt(selected, photo)}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                  />
-                </AnimatePresence>
+                <button className="pmap-photo-open" onClick={() => setLightbox(true)} aria-label="View photo full screen">
+                  <AnimatePresence mode="wait" initial={false}>
+                    <motion.img
+                      key={photos[photo]?.l}
+                      src={photos[photo]?.l}
+                      alt={projectAlt(selected, photo)}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    />
+                  </AnimatePresence>
+                  <span className="pmap-zoom">
+                    <Maximize2 size={14} /> Enlarge
+                  </span>
+                </button>
                 {photos.length > 1 && (
                   <>
-                    <button className="pmap-nav l" onClick={() => setPhoto((photo - 1 + photos.length) % photos.length)} aria-label="Previous photo">
+                    <button className="pmap-nav l" onClick={() => step(-1)} aria-label="Previous photo">
                       <ChevronLeft size={18} />
                     </button>
-                    <button className="pmap-nav r" onClick={() => setPhoto((photo + 1) % photos.length)} aria-label="Next photo">
+                    <button className="pmap-nav r" onClick={() => step(1)} aria-label="Next photo">
                       <ChevronRight size={18} />
                     </button>
                     <span className="pmap-counter">
@@ -483,18 +509,41 @@ export default function ProjectMap({ projects }: { projects: Project[] }) {
                   </>
                 )}
               </div>
+              {photos.length > 1 && (
+                <div className="pmap-thumbs" role="group" aria-label="Project photos">
+                  {photos.map((ph, i) => (
+                    <button key={ph.s} className={i === photo ? "on" : ""} onClick={() => setPhoto(i)} aria-label={`Photo ${i + 1}`} aria-pressed={i === photo}>
+                      <img src={ph.s} alt="" loading="lazy" />
+                    </button>
+                  ))}
+                </div>
+              )}
               <div className="pmap-info">
-                <span className="work-meta">
-                  <span>
-                    <MapPin size={13} /> {selected.street}, {selected.city}, {selected.state}
-                  </span>
-                  <span>{formatMonth(selected.date)}</span>
-                </span>
                 <h3>
                   <i className="dot-swatch" style={{ background: swatchFor(selected.color) }} />
                   {selected.color ?? "Roof replacement"}
                 </h3>
-                <p>{selected.product ?? "Architectural shingles"} · Full roof replacement</p>
+                <p className="pmap-addr">
+                  <MapPin size={13} /> {selected.street}, {selected.city}, {selected.state} {selected.zip}
+                </p>
+                <dl className="pmap-facts">
+                  <div>
+                    <dt><Hammer size={13} /> Work</dt>
+                    <dd>Full roof replacement</dd>
+                  </div>
+                  <div>
+                    <dt><Calendar size={13} /> Completed</dt>
+                    <dd>{formatMonth(selected.date)}</dd>
+                  </div>
+                  <div>
+                    <dt><Palette size={13} /> Shingle</dt>
+                    <dd>{selected.product ?? "Architectural shingles"}</dd>
+                  </div>
+                  <div>
+                    <dt><ImageIcon size={13} /> Photos</dt>
+                    <dd>{photos.length}</dd>
+                  </div>
+                </dl>
                 <div className="pmap-actions">
                   <Link href="/contact-us" className="btn btn-primary">
                     Get a quote <ArrowRight size={16} />
@@ -508,6 +557,49 @@ export default function ProjectMap({ projects }: { projects: Project[] }) {
           )}
         </AnimatePresence>
       </div>
+
+      <AnimatePresence>
+        {lightbox && selected && photos[photo] && (
+          <motion.div
+            className="pmap-lightbox"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Project photos"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => setLightbox(false)}
+          >
+            <button className="lb-close" onClick={() => setLightbox(false)} aria-label="Close photo">
+              <X size={22} />
+            </button>
+            <div className="lb-stage" onClick={(e) => e.stopPropagation()}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={photos[photo].l} alt={projectAlt(selected, photo)} />
+              {photos.length > 1 && (
+                <>
+                  <button className="lb-nav l" onClick={() => step(-1)} aria-label="Previous photo">
+                    <ChevronLeft size={26} />
+                  </button>
+                  <button className="lb-nav r" onClick={() => step(1)} aria-label="Next photo">
+                    <ChevronRight size={26} />
+                  </button>
+                </>
+              )}
+            </div>
+            <div className="lb-caption" onClick={(e) => e.stopPropagation()}>
+              <strong>
+                {selected.color ?? "Roof replacement"} · {shortProduct(selected.product)}
+              </strong>
+              <span>
+                {selected.street}, {selected.city}, {selected.state} · {formatMonth(selected.date)}
+                {photos.length > 1 ? ` · ${photo + 1} of ${photos.length}` : ""}
+              </span>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
