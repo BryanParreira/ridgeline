@@ -66,6 +66,12 @@ export default function RoofCheckup() {
         }),
       });
       if (!res.ok) throw new Error();
+      (window as unknown as { gtag?: (...a: unknown[]) => void }).gtag?.("event", "generate_lead", {
+        form_name: "roof_checkup",
+        lead_city: lead.city,
+        checkup_score: score,
+        checkup_verdict: v.title,
+      });
       setStatus("done");
     } catch {
       setStatus("error");

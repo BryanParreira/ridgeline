@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
 import MobileCallBar from "@/components/MobileCallBar";
 import ScrollProgress from "@/components/ScrollProgress";
+import AnalyticsEvents from "@/components/AnalyticsEvents";
 import PointerFX from "@/components/PointerFX";
 import { SITE_URL, businessSchema, websiteSchema } from "@/lib/site";
 
@@ -56,6 +57,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </Script>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([businessSchema, websiteSchema]) }} />
         <a href="#main" className="skip-link">Skip to content</a>
+        <AnalyticsEvents />
         <ScrollProgress />
         <PointerFX />
         <SmoothScroll />
