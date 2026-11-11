@@ -20,6 +20,9 @@ export function GET() {
 - Service area: ${cities.map((c) => `${c.name}, ${c.state}`).join("; ")}
 - Free roof inspections and written quotes
 - Works directly with homeowners' insurance companies on hail and wind claims
+- Owner: ${company.owner.name}
+- Minnesota roofer license: ${company.owner.license}
+- Credential: CertainTeed SidingMaster Pro credentialed contractor
 - Website: ${abs("/")}
 
 ## Services
@@ -30,6 +33,7 @@ ${cities.map((c) => `- [Roofing in ${c.name}, ${c.state}](${abs(`/areas-we-serve
 
 ## Key pages
 - [Project map of completed roofs](${abs("/portfolio")})
+- [About us and owner](${abs("/about-us")})
 - [Roofing FAQs](${abs("/faqs")})
 - [Service area overview](${abs("/service-area")})
 - [Request a quote](${abs("/contact-us")})

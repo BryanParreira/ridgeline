@@ -112,6 +112,7 @@ export const businessSchema = {
       closes: "23:59",
     },
   ],
+  founder: { "@type": "Person", name: company.owner.name, jobTitle: company.owner.title },
   sameAs: [company.social.facebook],
 };
 
