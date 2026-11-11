@@ -4794,3 +4794,33 @@ body {
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* ---------- Nav: never wrap, collapse before it gets crowded ---------- */
+.nav-links a,
+.nav-phone,
+.nav-phone-text,
+.nav-cta .btn {
+  white-space: nowrap;
+}
+.nav-inner {
+  gap: 16px;
+}
+.nav-links {
+  gap: 0;
+}
+.nav-links a {
+  padding: 9px 12px;
+}
+@media (max-width: 1360px) {
+  .nav-phone-text {
+    display: none;
+  }
+}
+@media (max-width: 1160px) {
+  .nav-links {
+    display: none;
+  }
+  .menu-btn {
+    display: inline-flex;
+  }
+}
