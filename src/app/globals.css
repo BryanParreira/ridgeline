@@ -1260,6 +1260,13 @@ p {
   margin-top: 56px;
   font-size: 14px;
 }
+.footer-badge {
+  width: 112px;
+  height: 112px;
+  border-radius: 14px;
+  background: #fff;
+  object-fit: contain;
+}
 .socials {
   display: flex;
   gap: 8px;

@@ -87,9 +87,15 @@ export default function Footer() {
         </div>
         <div className="footer-bottom">
           <span>© {new Date().getFullYear()} RidgeLine Roofing LLC · Austin, Minnesota</span>
-          <a href={company.social.bbb} target="_blank" rel="noopener noreferrer">
-            BBB profile
-          </a>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            className="footer-badge"
+            src="/brand/certainteed-sidingmaster-pro.jpg"
+            alt="CertainTeed SidingMaster Pro Credentialed contractor"
+            width={112}
+            height={112}
+            loading="lazy"
+          />
         </div>
       </div>
     </footer>

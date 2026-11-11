@@ -112,7 +112,7 @@ export const businessSchema = {
       closes: "23:59",
     },
   ],
-  sameAs: [company.social.facebook, company.social.bbb],
+  sameAs: [company.social.facebook],
 };
 
 export const websiteSchema = {

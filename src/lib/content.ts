@@ -12,7 +12,6 @@ export const company = {
     facebook: "https://www.facebook.com/ridgelineroofing101",
     google: "https://www.google.com/maps/search/?api=1&query=RidgeLine+Roofing+Austin+MN",
     googleReview: "https://search.google.com/local/writereview?placeid=ChIJ80DXVivf82kRPksIFGDi10M",
-    bbb: "https://www.bbb.org/us/mn/austin/profile/roofing-contractors/ridgeline-roofing-llc-0704-1000051243",
   },
 };
 
