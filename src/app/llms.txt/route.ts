@@ -1,4 +1,4 @@
-import { company } from "@/lib/content";
+import { aboutPageLive, company } from "@/lib/content";
 import { cities } from "@/lib/cities";
 import { servicePages } from "@/lib/services";
 import { abs } from "@/lib/site";
@@ -33,8 +33,7 @@ ${cities.map((c) => `- [Roofing in ${c.name}, ${c.state}](${abs(`/areas-we-serve
 
 ## Key pages
 - [Project map of completed roofs](${abs("/portfolio")})
-- [About us and owner](${abs("/about-us")})
-- [Roofing FAQs](${abs("/faqs")})
+${aboutPageLive ? `- [About us and owner](${abs("/about-us")})\n` : ""}- [Roofing FAQs](${abs("/faqs")})
 - [Service area overview](${abs("/service-area")})
 - [Request a quote](${abs("/contact-us")})
 `;

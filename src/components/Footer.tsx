@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Facebook, MapPin, Phone, Star } from "lucide-react";
-import { company } from "@/lib/content";
+import { aboutPageLive, company } from "@/lib/content";
 import { servicePages } from "@/lib/services";
 import { cities } from "@/lib/cities";
 import Logo from "./Logo";
@@ -76,9 +76,11 @@ export default function Footer() {
               <li>
                 <Link href="/portfolio">Project map</Link>
               </li>
-              <li>
-                <Link href="/about-us">About us</Link>
-              </li>
+              {aboutPageLive && (
+                <li>
+                  <Link href="/about-us">About us</Link>
+                </li>
+              )}
               <li>
                 <Link href="/faqs">FAQs</Link>
               </li>

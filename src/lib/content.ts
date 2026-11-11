@@ -1,5 +1,8 @@
 // Central content store — edit business details here.
 
+// Flip to true once Cory's photo is added (public/images/team/cory-christenson.jpg) to publish /about-us.
+export const aboutPageLive = false;
+
 export const company = {
   name: "RidgeLine Roofing",
   phone: "(507) 440-8756",
@@ -46,8 +49,8 @@ export const nav = [
   { label: "Storm Repairs", href: "/storm-repairs" },
   { label: "Project Map", href: "/portfolio" },
   { label: "Service Area", href: "/service-area" },
-  { label: "About", href: "/about-us" },
   { label: "FAQ", href: "/faqs" },
+  ...(aboutPageLive ? [{ label: "About", href: "/about-us" }] : []),
 ];
 
 export const towns = [

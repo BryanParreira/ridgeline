@@ -7,7 +7,8 @@ import PageHero from "@/components/PageHero";
 import JsonLd from "@/components/JsonLd";
 import CtaBlock from "@/components/CtaBlock";
 import { Reveal } from "@/components/Reveal";
-import { company } from "@/lib/content";
+import { notFound } from "next/navigation";
+import { aboutPageLive, company } from "@/lib/content";
 import { abs, breadcrumbSchema, businessId, pageMeta } from "@/lib/site";
 
 export const metadata: Metadata = pageMeta({
@@ -22,6 +23,7 @@ const initials = company.owner.name
   .join("");
 
 export default function AboutPage() {
+  if (!aboutPageLive) notFound();
   const hasPhoto = existsSync(join(process.cwd(), "public", company.owner.photo));
 
   return (
