@@ -145,7 +145,8 @@ export default function ProjectMap({ projects }: { projects: Project[] }) {
     let cancelled = false;
     const markerMap = markers.current;
     (async () => {
-      const maplibre = (await import("maplibre-gl")).default;
+      const maplibre = await import("maplibre-gl");
+      maplibre.setWorkerUrl("/vendor/maplibre/maplibre-gl-worker.mjs");
       if (cancelled || !el.current) return;
       const m = new maplibre.Map({
         container: el.current,
