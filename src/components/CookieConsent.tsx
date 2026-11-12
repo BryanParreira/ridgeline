@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { Cookie } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const KEY = "rl_consent";
@@ -56,21 +57,23 @@ export default function CookieConsent() {
   if (!open) return null;
 
   return (
-    <div className="cookie-banner" role="dialog" aria-modal="false" aria-labelledby="cookie-title" aria-describedby="cookie-desc">
-      <p id="cookie-title" className="cookie-title">
-        Your privacy
-      </p>
-      <p id="cookie-desc" className="cookie-text">
-        We use Google Analytics cookies to see which pages help homeowners, so we can improve the site. They stay off unless you accept. Details in our{" "}
-        <Link href="/privacy-policy">Privacy Policy</Link>.
-      </p>
-      <div className="cookie-actions">
-        <button type="button" className="btn btn-outline" onClick={() => choose("denied")}>
-          Decline
-        </button>
-        <button type="button" className="btn btn-primary" onClick={() => choose("granted")}>
-          Accept
-        </button>
+    <div className="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie preferences">
+      <div className="cookie-card">
+        <div className="cookie-body">
+          <Cookie size={20} className="cookie-icon" aria-hidden="true" />
+          <p className="cookie-text">
+            We use essential cookies to run this site and optional Google Analytics cookies to understand usage and improve your experience. You
+            can accept all or keep only the essential ones. See our <Link href="/privacy-policy">Privacy Policy</Link>.
+          </p>
+        </div>
+        <div className="cookie-actions">
+          <button type="button" className="btn btn-outline" onClick={() => choose("denied")}>
+            Essential only
+          </button>
+          <button type="button" className="btn btn-primary" onClick={() => choose("granted")}>
+            Accept all
+          </button>
+        </div>
       </div>
     </div>
   );
