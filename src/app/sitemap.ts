@@ -16,6 +16,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: abs("/service-area"), lastModified: now, priority: 0.7 },
     { url: abs("/faqs"), lastModified: now, priority: 0.6 },
     { url: abs("/roof-checkup"), lastModified: now, priority: 0.7 },
+    { url: abs("/privacy-policy"), lastModified: now, priority: 0.3 },
+    { url: abs("/terms-of-service"), lastModified: now, priority: 0.3 },
     ...servicePages.map((s) => ({ url: abs(`/${s.slug}`), lastModified: now, priority: 0.9 })),
     ...cities.map((c) => ({ url: abs(`/areas-we-serve/${c.slug}`), lastModified: now, priority: c.region === "home" ? 0.8 : 0.6 })),
   ];

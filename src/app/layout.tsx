@@ -9,6 +9,7 @@ import MobileCallBar from "@/components/MobileCallBar";
 import ScrollProgress from "@/components/ScrollProgress";
 import AnalyticsEvents from "@/components/AnalyticsEvents";
 import PointerFX from "@/components/PointerFX";
+import CookieConsent from "@/components/CookieConsent";
 import { SITE_URL, businessSchema, websiteSchema } from "@/lib/site";
 
 const display = Inter_Tight({ subsets: ["latin"], variable: "--font-display", weight: ["500", "600", "700"] });
@@ -53,7 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-DHJQWMHV2E" strategy="afterInteractive" />
         <Script id="gtag-init" strategy="afterInteractive">
-          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-DHJQWMHV2E');`}
+          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500});try{var c=localStorage.getItem('rl_consent');if(c==='granted'||c==='denied')gtag('consent','update',{analytics_storage:c});}catch(e){}gtag('js',new Date());gtag('config','G-DHJQWMHV2E');`}
         </Script>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([businessSchema, websiteSchema]) }} />
         <a href="#main" className="skip-link">Skip to content</a>
@@ -65,6 +66,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         <Footer />
         <MobileCallBar />
+        <CookieConsent />
       </body>
     </html>
   );

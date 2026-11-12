@@ -4,6 +4,7 @@ import { aboutPageLive, company } from "@/lib/content";
 import { servicePages } from "@/lib/services";
 import { cities } from "@/lib/cities";
 import Logo from "./Logo";
+import { CookieSettingsButton } from "./CookieConsent";
 
 export default function Footer() {
   const topCities = cities.filter((c) => c.region !== "metro").slice(0, 9);
@@ -92,6 +93,11 @@ export default function Footer() {
         </div>
         <div className="footer-bottom">
           <span>© {new Date().getFullYear()} RidgeLine Roofing LLC · Austin, Minnesota</span>
+          <nav className="footer-legal" aria-label="Legal">
+            <Link href="/privacy-policy">Privacy Policy</Link>
+            <Link href="/terms-of-service">Terms of Service</Link>
+            <CookieSettingsButton />
+          </nav>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             className="footer-badge"

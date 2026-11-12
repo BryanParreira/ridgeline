@@ -34,6 +34,8 @@ ${cities.map((c) => `- [Roofing in ${c.name}, ${c.state}](${abs(`/areas-we-serve
 ## Key pages
 - [Project map of completed roofs](${abs("/portfolio")})
 ${aboutPageLive ? `- [About us and owner](${abs("/about-us")})\n` : ""}- [Roofing FAQs](${abs("/faqs")})
+- [Privacy Policy](${abs("/privacy-policy")})
+- [Terms of Service](${abs("/terms-of-service")})
 - [Service area overview](${abs("/service-area")})
 - [Request a quote](${abs("/contact-us")})
 `;
