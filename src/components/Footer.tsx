@@ -108,6 +108,12 @@ export default function Footer() {
             loading="lazy"
           />
         </div>
+        <p className="footer-credit">
+          Website design &amp; SEO by{" "}
+          <a href="https://webvisionrank.com" target="_blank" rel="noopener" title="WebVisionRank: web design and SEO for local service businesses">
+            WebVisionRank
+          </a>
+        </p>
       </div>
     </footer>
   );
