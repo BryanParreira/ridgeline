@@ -124,6 +124,11 @@ export const websiteSchema = {
   name: company.name,
   inLanguage: "en-US",
   publisher: { "@id": businessId },
+  creator: {
+    "@type": "Organization",
+    name: "WebVisionRank",
+    url: "https://webvisionrank.com",
+  },
 };
 
 export function breadcrumbSchema(items: { name: string; path: string }[]) {
